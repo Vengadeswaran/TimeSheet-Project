@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EFDD743A-211F-4ADF-99CA-BF9B636BE4ED}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CIMB_TimeSheet_RMS</RootNamespace>
+    <AssemblyName>CIMB_TimeSheet_RMS</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ITXProjectsLibrary, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ebfca3a9b29c271a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ITXProjectsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\Common Files\Microsoft Shared\web server extensions\12\ISAPI\Microsoft.SharePoint.dll</HintPath>
+    </Reference>
+    <Reference Include="PivotTools">
+      <HintPath>_Layouts\CIMB_TimeSheet\PivotTools.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ajax_Test.ascx" />
+    <Content Include="Default.aspx" />
+    <Content Include="ManDaysByProject.ascx" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-anim_basic_16x16.gif" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\jquery-ui-1.8.2.custom.css" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\StdGrid.css" />
+    <Content Include="_Layouts\CIMB_TimeSheet\js\jquery-ui-1.8.9.custom.min.js" />
+    <Content Include="_Layouts\CIMB_TimeSheet\js\jquery.jqGrid.min.js" />
+    <Content Include="Res_Captilization.ascx" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\smoothness\jquery-ui-1.8.9.custom.css" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\ui.jqgrid.css" />
+    <Content Include="_Layouts\CIMB_TimeSheet\edit_entity.aspx" />
+    <Content Include="HR_View.ascx" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="_Layouts\CIMB_TimeSheet\css\basic.css" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\basic_ie.css" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\cimb_timesheet.css" />
+    <Content Include="_Layouts\CIMB_TimeSheet\img\basic\x.png" />
+    <Content Include="_Layouts\CIMB_TimeSheet\js\grid.locale-en.js" />
+    <Content Include="_Layouts\CIMB_TimeSheet\js\jquery-1.4.4.min.js" />
+    <Content Include="_Layouts\CIMB_TimeSheet\js\jquery.json-2.2.min.js" />
+    <Content Include="_Layouts\CIMB_TimeSheet\js\jquery.simplemodal.js" />
+    <Content Include="_Layouts\CIMB_TimeSheet\ManDaysByProject.aspx" />
+    <Content Include="_Layouts\CIMB_TimeSheet\res_capt_data.aspx" />
+    <Content Include="_Layouts\CIMB_TimeSheet\css\jumppcs.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ajax_Test.ascx.cs">
+      <DependentUpon>Ajax_Test.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ajax_Test.ascx.designer.cs">
+      <DependentUpon>Ajax_Test.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManDaysByProject.ascx.cs">
+      <DependentUpon>ManDaysByProject.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManDaysByProject.ascx.designer.cs">
+      <DependentUpon>ManDaysByProject.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Res_Captilization.ascx.cs">
+      <DependentUpon>Res_Captilization.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Res_Captilization.ascx.designer.cs">
+      <DependentUpon>Res_Captilization.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\edit_entity.aspx.cs">
+      <DependentUpon>edit_entity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\edit_entity.aspx.designer.cs">
+      <DependentUpon>edit_entity.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR_View.ascx.cs">
+      <DependentUpon>HR_View.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR_View.ascx.designer.cs">
+      <DependentUpon>HR_View.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MyConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_Layouts\CIMB_TimeSheet\ManDaysByProject.aspx.cs">
+      <DependentUpon>ManDaysByProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\ManDaysByProject.aspx.designer.cs">
+      <DependentUpon>ManDaysByProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\res_capt_data.aspx.cs">
+      <DependentUpon>res_capt_data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\res_capt_data.aspx.designer.cs">
+      <DependentUpon>res_capt_data.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1505</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

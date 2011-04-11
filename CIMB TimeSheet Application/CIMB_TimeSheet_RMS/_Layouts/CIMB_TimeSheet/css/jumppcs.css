@@ -1,0 +1,472 @@
+﻿/*Default Values*/
+.wrapper
+{
+    background-color: #FFFFFF;
+    font-family: Verdana;
+    color: #000000;
+    font-size: 10pt;
+    padding: 10px;
+}
+.wrapper h1, h2, h3, h4, h5, h6
+{
+    color: #000000;
+}
+.wrapper h1
+{
+    font-family: Verdana;
+    font-weight: normal;
+    font-size: 22pt;
+}
+.wrapper TABLE THEAD, TFOOT
+{
+    background-color: #08154D;
+    color: #FFFFFF;
+    padding: 0px;
+    margin: 0px;
+}
+.wrapper P
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+/*Overrides*/
+.qtip
+{
+    font-family: Verdana;
+}
+/* tool tip style */
+.qtip ul, li
+{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.span-n
+{
+    padding: 10px 0px 0px 0px;
+    width: 10px;
+    margin: 0px 0px 0px 470px;
+    height: 350px;
+}
+
+/* header title and footer */
+.header
+{
+    font-family: Verdana;
+    font-weight: normal;
+    font-size: 16pt;
+    color: #CACACA;
+    border-bottom: solid 1px #CACACA;
+}
+.title
+{
+    font-size: 16pt;
+    font-weight: normal;
+    text-align: left;
+    color: #FFFFFF;
+}
+.titlenegative
+{
+    font-size: 16pt;
+    font-weight: normal;
+    text-align: left;
+}
+.revert
+{
+    background-color: #696969;
+    color: #FFFFFF;
+    height: 43px;
+}
+.revert h1, h2, h3, h4, h5, h6
+{
+    color: #FFFFFF;
+}
+.footertable
+{
+    width: 950px;
+}
+.footerborder
+{
+    border-bottom: solid 1px #000000;
+    border-left: solid 1px #000000;
+    border-right: solid 1px #000000;
+}
+.footer
+{
+    font-family: Verdana;
+    font-size: 8pt;
+    font-weight: normal;
+    text-align: left;
+}
+.legendtitle
+{
+    font-size: 10pt;
+}
+
+/* Data Grid formating */
+
+.gridHeader
+{
+    height: 40px;
+    background-color: #CACACA;
+    color: #FFFFFF;
+}
+.gridHeader TH
+{
+    font-family: Verdana;
+    font-size: 12pt;
+    font-weight: normal;
+    color: #FFFFFF;
+    text-align: left;
+}
+.grid_Detail_Header
+{
+    height: 40px;
+    background-color: #CACACA;
+    color: #FFFFFF;
+}
+.grid_Detail_Header TH
+{
+    padding: 8px 5px 8px 10px;
+    font-family: Verdana;
+    font-size: 12pt;
+    font-weight: normal;
+    color: #000000;
+    text-align: left;
+}
+.grid_Detail_Header_Select
+{
+    font-family: Verdana;
+    font-size: 9pt;
+    font-weight: normal;
+    color: #000000;
+    text-align: left;
+    display: block;
+    text-indent: 5px;
+}
+.grid_Detail_Rows
+{
+}
+.grid_Detail_Rows IMG
+{
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+    display: block;
+    margin: 0px;
+}
+.grid_Detail_Rows TD
+{
+    display: block;
+    padding: 3px 5px 3px 10px;
+    font-family: Verdana;
+    font-size: 10pt;
+    font-weight: normal;
+    text-align: left;
+}
+.grid_Detail_Rows01
+{
+    background-color: Black;
+}
+.grid_Detail_Rows01 TD
+{
+    padding: 3px 5px 3px 10px;
+    font-family: Verdana;
+    font-size: 10pt;
+    font-weight: normal;
+    background-color: #F2F2F2;
+    text-align: left;
+}
+.grid_Detail_Rows01 IMG
+{
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+    display: block;
+    margin: 0px;
+}
+.gridRows
+{
+}
+.gridRows TD
+{
+    padding: 8px 5px 8px 5px;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-weight: normal;
+}
+.gridRows TD:img
+{
+    text-align: center;
+}
+.gridRows01
+{
+}
+.gridRows01 TD
+{
+    padding: 8px 5px 8px 5px;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-weight: normal;
+    background-color: #FFFFFF;
+}
+.gridRows01 TD:img
+{
+    text-align: center;
+}
+.pjinfolegend
+{
+    background-color: #696969;
+    color: #FFFFFF;
+    padding: 5px 5px 8px 5px;
+    font-size: 12pt;
+}
+.pjinfoRow
+{
+    height: 40px;
+}
+.pjinfoAltRow
+{
+    height: 40px;
+    background-color: #F2F2F2;
+}
+.pjinfovalue
+{
+    font-weight: normal;
+}
+.pjinfoLable
+{
+    text-align: right;
+}
+.tablelabel
+{
+    background-color: #F2F2F2;
+    display: block;
+    vertical-align: middle;
+    text-align: left;
+    text-indent: 10px;
+}
+.tablelabelborder
+{
+    height: 35px;
+    border-bottom: solid 1pt #696969;
+}
+.tablevalue
+{
+    text-align: left;
+    text-indent: 10px;
+    height: 35px;
+    border-bottom: solid 1pt #CACACA;
+}
+/* Standard padding and borders */
+
+.boxborder
+{
+    border: 1pt solid #696969;
+}
+.boxborderlrb24span
+{
+    border-bottom: 2pt solid #D2D2D2;
+    border-left: 1pt solid #D2D2D2;
+    border-right: 1pt solid #D2D2D2;
+}
+.boxborderlrb
+{
+    border-bottom: 2pt solid #D2D2D2;
+    border-left: 1pt solid #D2D2D2;
+    border-right: 1pt solid #D2D2D2;
+}
+.bottomborder
+{
+    border-bottom: 1pt solid #08154D;
+}
+.height60
+{
+    height: 60px;
+}
+.height30
+{
+    height: 30px;
+}
+.textaligncenter
+{
+    text-align: center;
+}
+.paddingall0px
+{
+    padding: 0px;
+}
+.paddingtop10px
+{
+    padding-top: 10px;
+}
+.paddingtop20px
+{
+    padding-top: 20px;
+}
+.paddingleft5px
+{
+    padding-left: 5px;
+}
+.paddingleft10px
+{
+    padding-left: 10px;
+}
+.paddinglr
+{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.paddingright-10px
+{
+    padding-right: -10px;
+}
+.marginall
+{
+    margin: 10px;
+}
+.paddingall10px
+{
+    padding: 10px;
+}
+.paddingtop5px
+{
+    padding-top: 5px;
+}
+.paddingbottom10px
+{
+    padding-bottom: 10px;
+}
+.paddingbottom5px
+{
+    padding-bottom: 3px;
+}
+.paddingtopbottom5px
+{
+    padding-bottom: 2px;
+    padding-top: 3px;
+}
+.mariginright0px
+{
+    margin-right: 0px;
+}
+.spandisplay
+{
+    display: block;
+}
+.textbox
+{
+    display: inline;
+    text-align: left;
+    vertical-align: text-bottom;
+    white-space: normal;
+    overflow: visible;
+    clear: both;
+    float: left;
+    visibility: visible;
+}
+/* SharePoint Override */
+.ms-pagetitleareaframe
+{
+    display: none;
+}
+.textRAlign
+{
+    text-align: right;
+}
+/*Telerik RadGrid Default Skin
+global*/
+/* RAD Control Override */
+.RadGrid_Default
+{
+    background: #FFF;
+    border: 0px;
+    color: #333;
+}
+.RadGrid_Default, .RadGrid_Default .rgMasterTable, .RadGrid_Default .rgDetailTable, .RadGrid_Default .rgGroupPanel TABLE, .RadGrid_Default .rgCommandRow TABLE, .RadGrid_Default .rgEditForm TABLE, .GridToolTip_Default
+{
+    font: 12px/12px Verdana;
+}
+.RadGrid_Default .rgHeader, .RadGrid_Default TH.rgResizeCol
+{
+    border: 0px;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background: #696969;
+    text-align: left;
+    color: #FFFFFF;
+    font-weight: normal;
+    font-size: 12px;
+    height: 60px;
+}
+.RadGrid_Default .rgGroupHeader
+{
+    height: 50px;
+    background: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 21px;
+    color: #000;
+}
+.RadGrid_Default .rgGroupHeader TD
+{
+    border-style: none none solid none;
+    border-width: 0px 0px 1px 0px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 85px;
+    border-top-color: inherit;
+    border-right-color: inherit;
+    border-bottom-color: #CACACA;
+    border-left-color: inherit;
+    font-size: 12px;
+    font-weight: bold;
+}
+.RadGrid_Default .rgRow TD
+{
+    border-color: #FFF;
+    height: 40px;
+}
+.RadGrid_Default .rgAltRow TD
+{
+    border-color: #F2F2F2;
+    height: 40px;
+}
+.rgGroupCol
+{
+    display: none;
+}
+
+/* Hyper link modifications */
+.hlinktext
+{
+}
+
+.hlinktext A:link, .hlinktext A:visited, .hlinktext A:active
+{
+    color: #0077CC;
+    text-decoration: underline;
+    padding: 5px 5px 8px 2px;
+    display: inline-block;
+}
+.hlinktext A:hover
+{
+    background-color: #0077CC;
+    color: #FFFFFF;
+}
+.gridtextbox
+{
+    padding: 3px 5px 5px 2px;
+    display: inline-block;
+}
+.ViewGridDiv
+{
+}
+.rightalign
+{
+    text-align: right;
+}
+.spacingdiv
+{
+    font-family: Verdana;
+    font-size: 8px;
+}
