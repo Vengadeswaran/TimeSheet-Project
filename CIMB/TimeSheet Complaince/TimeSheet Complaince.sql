@@ -2,21 +2,23 @@ declare @stdate as datetime, @enddate as datetime
 set @stdate = '2011/3/1'
 set @enddate = '2011/3/31'
 
-SELECT     MSP_EpmResource_UserView.ResourceUID, MSP_EpmResource_UserView.ResourceName, MSP_EpmResource_UserView.RBS, 
-                      MSP_TimesheetPeriod.PeriodUID, MSP_TimesheetPeriod.PeriodStatusID, MSP_TimesheetPeriod.StartDate, MSP_TimesheetPeriod.EndDate, 
-                      MSP_TimesheetPeriod.PeriodName, MSP_TimesheetPeriod.LCID
-INTO		#t1
-FROM         MSP_TimesheetPeriod CROSS JOIN
-                      MSP_EpmResource_UserView
-WHERE     (MSP_TimesheetPeriod.StartDate BETWEEN DATEADD(d, - 7, @stdate) AND @enddate)
-ORDER BY MSP_EpmResource_UserView.RBS, MSP_EpmResource_UserView.ResourceUID, MSP_TimesheetPeriod.StartDate
+SELECT     res.ResourceUID, res.ResourceName, res.RBS, tperiod.PeriodUID, tperiod.PeriodStatusID, tperiod.StartDate, tperiod.EndDate, tperiod.PeriodName, 
+                      tperiod.LCID
+INTO            [#t1]
+FROM         MSP_TimesheetPeriod AS tperiod CROSS JOIN
+                      MSP_EpmResource_UserView AS res
+WHERE     (tperiod.StartDate BETWEEN DATEADD(d, - 7, @stdate) AND @enddate)
 
 --select * from #t1
---drop table #t1
-SELECT     MSP_TimesheetStatus.Description, MSP_Timesheet.PeriodUID, MSP_TimesheetResource.ResourceUID,
-			#t1.RBS, #t1.ResourceName, #t1.StartDate, #t1.EndDate, #t1.PeriodName
-			
-FROM         MSP_TimesheetStatus INNER JOIN
-                      MSP_Timesheet ON MSP_TimesheetStatus.TimesheetStatusID = MSP_Timesheet.TimesheetStatusID INNER JOIN
-                      MSP_TimesheetResource ON MSP_Timesheet.OwnerResourceNameUID = MSP_TimesheetResource.ResourceNameUID RIGHT OUTER JOIN
-				#t1 ON #t1.ResourceUID =  MSP_TimesheetResource.ResourceUID AND #t1.PeriodUID = MSP_Timesheet.PeriodUID
+SELECT      [#t1].PeriodUID, [#t1].ResourceUID, [#t1].RBS, [#t1].ResourceName, [#t1].PeriodName, 
+			ISNULl(tstatus.Description,'Not Created') AS [TimeSheet Status], [#t1].StartDate, [#t1].EndDate
+INTO #t2
+FROM        MSP_TimesheetStatus AS tstatus INNER JOIN
+            MSP_Timesheet AS tsheet ON tstatus.TimesheetStatusID = tsheet.TimesheetStatusID INNER JOIN
+            MSP_TimesheetResource AS tres ON tsheet.OwnerResourceNameUID = tres.ResourceNameUID RIGHT OUTER JOIN
+            [#t1] ON [#t1].ResourceUID = tres.ResourceUID AND [#t1].PeriodUID = tsheet.PeriodUID
+drop table #t1
+
+SELECT ResourceName, PeriodName, [TimeSheet Status] FROM #t2 WHERE [TimeSheet Status] <> 'Approved'
+
+drop table #t2
