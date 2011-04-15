@@ -61,6 +61,7 @@
     <Content Include="Ajax_Test.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="ManDaysByProject.ascx" />
+    <Content Include="TimeSheetComplainceReport.ascx" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-anim_basic_16x16.gif" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
@@ -120,6 +121,7 @@
     <Content Include="_Layouts\CIMB_TimeSheet\ManDaysByProject.aspx" />
     <Content Include="_Layouts\CIMB_TimeSheet\res_capt_data.aspx" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\jumppcs.css" />
+    <Content Include="_Layouts\CIMB_TimeSheet\TimeSheetComplainceData.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ajax_Test.ascx.cs">
@@ -150,6 +152,13 @@
     <Compile Include="Res_Captilization.ascx.designer.cs">
       <DependentUpon>Res_Captilization.ascx</DependentUpon>
     </Compile>
+    <Compile Include="TimeSheetComplainceReport.ascx.cs">
+      <DependentUpon>TimeSheetComplainceReport.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TimeSheetComplainceReport.ascx.designer.cs">
+      <DependentUpon>TimeSheetComplainceReport.ascx</DependentUpon>
+    </Compile>
     <Compile Include="_Layouts\CIMB_TimeSheet\edit_entity.aspx.cs">
       <DependentUpon>edit_entity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -179,6 +188,13 @@
     </Compile>
     <Compile Include="_Layouts\CIMB_TimeSheet\res_capt_data.aspx.designer.cs">
       <DependentUpon>res_capt_data.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\TimeSheetComplainceData.aspx.cs">
+      <DependentUpon>TimeSheetComplainceData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\TimeSheetComplainceData.aspx.designer.cs">
+      <DependentUpon>TimeSheetComplainceData.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
