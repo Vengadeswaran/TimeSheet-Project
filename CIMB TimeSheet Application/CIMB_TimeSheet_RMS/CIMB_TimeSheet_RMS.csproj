@@ -59,9 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ajax_Test.ascx" />
+    <Content Include="ApprovalPending.ascx" />
     <Content Include="Default.aspx" />
     <Content Include="ManDaysByProject.ascx" />
     <Content Include="TimeSheetComplainceReport.ascx" />
+    <Content Include="_Layouts\CIMB_TimeSheet\ApprovalPending_Data.aspx" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-anim_basic_16x16.gif" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
@@ -131,6 +133,13 @@
     <Compile Include="Ajax_Test.ascx.designer.cs">
       <DependentUpon>Ajax_Test.ascx</DependentUpon>
     </Compile>
+    <Compile Include="ApprovalPending.ascx.cs">
+      <DependentUpon>ApprovalPending.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovalPending.ascx.designer.cs">
+      <DependentUpon>ApprovalPending.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -158,6 +167,13 @@
     </Compile>
     <Compile Include="TimeSheetComplainceReport.ascx.designer.cs">
       <DependentUpon>TimeSheetComplainceReport.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\ApprovalPending_Data.aspx.cs">
+      <DependentUpon>ApprovalPending_Data.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\ApprovalPending_Data.aspx.designer.cs">
+      <DependentUpon>ApprovalPending_Data.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Layouts\CIMB_TimeSheet\edit_entity.aspx.cs">
       <DependentUpon>edit_entity.aspx</DependentUpon>
