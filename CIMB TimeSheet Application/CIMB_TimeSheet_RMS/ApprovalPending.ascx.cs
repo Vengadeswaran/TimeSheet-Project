@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using ITXProjectsLibrary.WebSvcResource;
+using Microsoft.SharePoint;
 
 namespace CIMB_TimeSheet_RMS
 {
@@ -11,7 +8,12 @@ namespace CIMB_TimeSheet_RMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string siteurl = MyConfiguration.GetSiteURL(SPContext.Current);
+            var Resource_Svc = new Resource();
+            Resource_Svc.AllowAutoRedirect = true;
+            Resource_Svc.UseDefaultCredentials = true;
+            Resource_Svc.Url = siteurl + "/_vti_bin/psi/resource.asmx";
+            LblCurrentResUID.Text = Resource_Svc.GetCurrentUserUid().ToString();
         }
     }
 }
