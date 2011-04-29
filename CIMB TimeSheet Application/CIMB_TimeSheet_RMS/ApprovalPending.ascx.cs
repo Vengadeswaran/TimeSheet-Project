@@ -14,6 +14,7 @@ namespace CIMB_TimeSheet_RMS
             Resource_Svc.UseDefaultCredentials = true;
             Resource_Svc.Url = siteurl + "/_vti_bin/psi/resource.asmx";
             LblCurrentResUID.Text = Resource_Svc.GetCurrentUserUid().ToString();
+            //LblCurrentResUID.Text = "6FF0A657-63BC-4390-8AAF-7EE5CE033088";
         }
     }
 }
