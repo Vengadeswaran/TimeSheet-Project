@@ -22,12 +22,12 @@ namespace CIMB_TimeSheet_RMS {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ApprovalPending1 control.
+        /// TimeSheetComplainceReport1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CIMB_TimeSheet_RMS.ApprovalPending ApprovalPending1;
+        protected global::CIMB_TimeSheet_RMS.TimeSheetComplainceReport TimeSheetComplainceReport1;
     }
 }

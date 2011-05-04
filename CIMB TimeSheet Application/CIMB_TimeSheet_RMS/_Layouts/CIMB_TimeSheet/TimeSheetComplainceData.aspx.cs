@@ -63,7 +63,13 @@ INTO            [#t1]
 FROM         MSP_EpmResource_UserView AS TM_Name RIGHT OUTER JOIN
                       MSP_EpmResource_UserView AS res ON TM_Name.ResourceUID = res.ResourceTimesheetManagerUID CROSS JOIN
                       MSP_TimesheetPeriod AS tperiod
-WHERE     (tperiod.StartDate BETWEEN DATEADD(d, - 7,'" + _stdate + @"') AND '" + _enddate + @"') AND (res.ResourceUID IN " + filterresource + @")
+WHERE     (tperiod.StartDate BETWEEN (
+(SELECT CASE WHEN (TimeDayOfTheWeek = 2) THEN '" + _stdate + @"' WHEN (TimeDayOfTheWeek = 1) THEN DATEADD(d,1, '" + _stdate + @"')
+ELSE DATEADD(d,(2-TimeDayofTheWeek), '" + _stdate + @"') END AS stdate
+FROM         MSP_TimeByDay
+WHERE     (TimeByDay = CONVERT(DATETIME, '" + _stdate + @"', 102)))
+)
+AND '" + _enddate + @"') AND (res.ResourceUID IN " + filterresource + @")
 SELECT      [#t1].PeriodUID, [#t1].ResourceUID,[#t1].TM_Name, [#t1].RBS, [#t1].ResourceName, [#t1].PeriodName,
 			ISNULl(tstatus.Description,'Not Created') AS [TimeSheet Status], [#t1].StartDate, [#t1].EndDate
 INTO #t2
