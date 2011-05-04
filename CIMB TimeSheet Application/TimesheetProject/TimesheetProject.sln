@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIMB_TimeSheet_RMS", "..\CIMB_TimeSheet_RMS\CIMB_TimeSheet_RMS.csproj", "{EFDD743A-211F-4ADF-99CA-BF9B636BE4ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole_Timesheetapproval", "TestConsole_Timesheetapproval\TestConsole_Timesheetapproval.csproj", "{A12CB5E6-16EB-4140-B17E-F98BDDBFEE47}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFDD743A-211F-4ADF-99CA-BF9B636BE4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFDD743A-211F-4ADF-99CA-BF9B636BE4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFDD743A-211F-4ADF-99CA-BF9B636BE4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFDD743A-211F-4ADF-99CA-BF9B636BE4ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A12CB5E6-16EB-4140-B17E-F98BDDBFEE47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A12CB5E6-16EB-4140-B17E-F98BDDBFEE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A12CB5E6-16EB-4140-B17E-F98BDDBFEE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A12CB5E6-16EB-4140-B17E-F98BDDBFEE47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

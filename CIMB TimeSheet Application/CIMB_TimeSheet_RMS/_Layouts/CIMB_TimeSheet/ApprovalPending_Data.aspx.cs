@@ -22,7 +22,7 @@ namespace CIMB_TimeSheet_RMS._Layouts.CIMB_TimeSheet
             string OutputXMLValue = "<?xml version='1.0' encoding='utf-8' ?><rows>";
             try
             {
-                Guid curesuid = new Guid(resuid);
+                var curesuid = new Guid(resuid);
                 string getresqry = @" SELECT   ResourceUID
                                             FROM     MSP_EpmResource_UserView
                                             WHERE    (ResourceTimesheetManagerUID = '" + curesuid + @"')";
@@ -48,14 +48,14 @@ namespace CIMB_TimeSheet_RMS._Layouts.CIMB_TimeSheet
                                     res_uids = res_uids + "'" + ro["ResourceUID"] + "',";
                                 }
                             }
-                            else res_uids = "'" + curesuid.ToString() + "',";
+                            else res_uids = "'" + curesuid + "',";
                         }
                         res_uids = "(" + res_uids.Substring(0, res_uids.Length - 1) + ")";
                         string gridqry = @"
 SELECT     MSP_TimesheetResource.ResourceName, MSP_TimesheetPeriod.PeriodName, CASE WHEN (MSP_TimesheetProject.ProjectName = 'Administrative')
                       THEN MSP_TimesheetClass.ClassName ELSE MSP_TimesheetProject.ProjectName END AS ProjectName,
                       SUM(MSP_TimesheetActual.ActualWorkBillable + MSP_TimesheetActual.ActualWorkNonBillable + MSP_TimesheetActual.ActualOvertimeWorkBillable + MSP_TimesheetActual.ActualOvertimeWorkNonBillable)
-                       AS Actual
+                       AS Actual,  MSP_Timesheet.TimesheetUID
 FROM         MSP_TimesheetPeriod INNER JOIN
                       MSP_Timesheet ON MSP_TimesheetPeriod.PeriodUID = MSP_Timesheet.PeriodUID INNER JOIN
                       MSP_TimesheetActual INNER JOIN
@@ -65,10 +65,11 @@ FROM         MSP_TimesheetPeriod INNER JOIN
                       MSP_Timesheet.OwnerResourceNameUID = MSP_TimesheetResource.ResourceNameUID AND
                       MSP_Timesheet.TimesheetUID = MSP_TimesheetLine.TimesheetUID INNER JOIN
                       MSP_TimesheetClass ON MSP_TimesheetLine.ClassUID = MSP_TimesheetClass.ClassUID
-WHERE     (MSP_Timesheet.TimesheetStatusID = 1) AND (MSP_TimesheetResource.ResourceUID IN " + res_uids + @")
+                      WHERE     (MSP_Timesheet.TimesheetStatusID = 1)
 GROUP BY MSP_TimesheetPeriod.PeriodName, MSP_TimesheetResource.ResourceName, CASE WHEN (MSP_TimesheetProject.ProjectName = 'Administrative')
-                      THEN MSP_TimesheetClass.ClassName ELSE MSP_TimesheetProject.ProjectName END
+                      THEN MSP_TimesheetClass.ClassName ELSE MSP_TimesheetProject.ProjectName END, MSP_Timesheet.TimesheetUID
 ";
+                        //AND (MSP_TimesheetResource.ResourceUID IN " + res_uids + @")
                         var dt = new DataSet();
                         adapter = new SqlDataAdapter(new SqlCommand(gridqry, con));
                         adapter.Fill(dt);
@@ -97,7 +98,7 @@ GROUP BY MSP_TimesheetPeriod.PeriodName, MSP_TimesheetResource.ResourceName, CAS
                                              Equals(grouping.Key)
                                          select c);
                                     var sum = periodnames.Sum(row => row.Field<decimal>("Actual"));
-                                    OutputXMLValue += "<cell>" + sum + "</cell><cell>1</cell><cell>0</cell>";
+                                    OutputXMLValue += "<cell>" + sum + "</cell><cell>false</cell><cell>" + grouping.First()["TimesheetUID"] + "</cell><cell>1</cell><cell>0</cell>";
                                     resourceIndex = RowIndex++;
                                     if (periodnames.Count() > 0)
                                         OutputXMLValue += "<cell>false</cell><cell>true</cell></row>";
@@ -125,7 +126,7 @@ GROUP BY MSP_TimesheetPeriod.PeriodName, MSP_TimesheetResource.ResourceName, CAS
                                                     r =>
                                                     r.Field<decimal>("Actual"));
                                             OutputXMLValue += "<cell>" + sum +
-                                                            "</cell><cell>2</cell><cell>" +
+                                                            "</cell><cell>false</cell><cell>" + row.First()["TimesheetUID"] + "</cell><cell>2</cell><cell>" +
                                                             resourceIndex +
                                                             "</cell>";
                                             periodIndex = RowIndex++;
@@ -151,10 +152,9 @@ GROUP BY MSP_TimesheetPeriod.PeriodName, MSP_TimesheetResource.ResourceName, CAS
                                                         "<row><cell>" +
                                                         dataRows.First()["ProjectName"] +
                                                         "</cell>";
-
                                                     OutputXMLValue +=
                                                         "<cell>" +
-                                                        dataRows.First()["Actual"] + "</cell><cell>3</cell><cell>" + periodIndex + "</cell>";
+                                                        dataRows.First()["Actual"] + "</cell><cell>false</cell><cell>" + dataRows.First()["TimesheetUID"] + "</cell><cell>3</cell><cell>" + periodIndex + "</cell>";
                                                     OutputXMLValue +=
                                                         "<cell>true</cell><cell>true</cell></row>";
                                                     RowIndex++;

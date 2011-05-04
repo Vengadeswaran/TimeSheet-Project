@@ -11,40 +11,24 @@ namespace CIMB_TimeSheet_RMS
         public static string GetSiteURL(SPContext Context)
         {
             if (Context != null)
-            {
                 return Utilities.GetDefaultZoneUri(SPContext.Current.Site);
-            }
-            else
-            {
-                return "http://jump/cimb";
-            }
+                return "http://epm2007demo/pwa03";
         }
 
         public static string frm_siteurl_GetSiteURL(string siteurl)
         {
             int dev = siteurl.IndexOf("http://localhost");
-
-            if (siteurl != null && dev < 0)
-            {
+            if (siteurl != string.Empty && dev < 0)
                 return Utilities.GetDefaultZoneUri(new SPSite(siteurl));
-            }
-            else
-            {
-                return "http://jump/cimb";
-            }
+                return GetSiteURL(null);
         }
 
         public static string GetDataBaseName(SPContext Context)
         {
             if (Context != null)
-            {
-                return Utilities.GetProjectServerSQLDatabaseName(Context.Site.Url, ITXProjectsLibrary.Utilities.DatabaseType.ReportingDatabase);
-            }
-            else
-            {
+                return Utilities.GetProjectServerSQLDatabaseName(Context.Site.Url, Utilities.DatabaseType.ReportingDatabase);
                 // For Development
                 return "";
-            }
         }
 
         //public static string GetDataBaseConnectionString(SPContext Context)
@@ -64,15 +48,15 @@ namespace CIMB_TimeSheet_RMS
         {
             int dev = siteurl.IndexOf("http://localhost");
 
-            if (siteurl != null && dev < 0)
+            if (siteurl != string.Empty && dev < 0)
             {
-                SPSite site = new SPSite(siteurl);
-                return Utilities.GetProjectServerSQLDatabaseConnectionString(site.Url, ITXProjectsLibrary.Utilities.DatabaseType.ReportingDatabase);
+                var site = new SPSite(siteurl);
+                return Utilities.GetProjectServerSQLDatabaseConnectionString(site.Url, Utilities.DatabaseType.ReportingDatabase);
             }
             else
             {
-                SPSite site = new SPSite("http://jump/cimb");
-                return Utilities.GetProjectServerSQLDatabaseConnectionString(site.Url, ITXProjectsLibrary.Utilities.DatabaseType.ReportingDatabase);
+                var site = new SPSite(GetSiteURL(null));
+                return Utilities.GetProjectServerSQLDatabaseConnectionString(site.Url, Utilities.DatabaseType.ReportingDatabase);
             }
         }
 
@@ -81,7 +65,7 @@ namespace CIMB_TimeSheet_RMS
             try
             {
                 WindowsImpersonationContext wic = WindowsIdentity.Impersonate(IntPtr.Zero);
-                EventLog El = new EventLog();
+                var El = new EventLog();
                 if (EventLog.SourceExists("CIMBTimeSheet") == false)
                     EventLog.CreateEventSource("CIMBTimeSheet", "CIMBTimeSheet");
                 El.Source = "CIMBTimeSheet";
@@ -89,7 +73,7 @@ namespace CIMB_TimeSheet_RMS
                 El.Close();
                 wic.Undo();
             }
-            catch (System.Exception Ex87)
+            catch (Exception Ex87)
             {
                 WriteTextLog(Ex87.Message + "\r" + LogStr);
             }
@@ -99,12 +83,13 @@ namespace CIMB_TimeSheet_RMS
         {
             try
             {
-                System.IO.StreamWriter Writer = new System.IO.StreamWriter(@"c:\CIMBTimeSheet.txt", true);
+                var Writer = new System.IO.StreamWriter(@"c:\CIMBTimeSheet.txt", true);
                 Writer.WriteLine(LogStr);
                 Writer.Close();
                 Writer.Dispose();
             }
-            catch (System.Exception Ex) { }
+            catch (Exception) {
+                return;}
         }
     }
 }

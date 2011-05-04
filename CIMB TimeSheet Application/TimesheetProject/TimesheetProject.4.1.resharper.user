@@ -1,0 +1,164 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer>
+      <setting name="UsedSolutionBuilderID">0</setting>
+    </integer>
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:MyConfiguration.cs" caret="1411" scrollPosition="0|0" />
+      <File id="A12CB5E6-16EB-4140-B17E-F98BDDBFEE47/f:Program.cs" caret="966" scrollPosition="0|0" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:__RESHARPER__DummyWebPages_/f:ApprovalPending.ascx" caret="3874" scrollPosition="0|0" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:_Layouts/d:CIMB_TimeSheet/f:ApprovalPending_Data.aspx.cs" caret="9923" scrollPosition="0|0" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="2127" scrollPosition="0|0" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:MyConfiguration.cs" caret="2530" scrollPosition="0|25" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:MyConfiguration.cs" caret="2889" scrollPosition="0|25" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:MyConfiguration.cs" caret="3129" scrollPosition="0|41" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:MyConfiguration.cs" caret="3381" scrollPosition="0|41" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:MyConfiguration.cs" caret="438" scrollPosition="0|0" />
+      <File id="A12CB5E6-16EB-4140-B17E-F98BDDBFEE47/f:Program.cs" caret="808" scrollPosition="0|4" />
+      <File id="A12CB5E6-16EB-4140-B17E-F98BDDBFEE47/f:Program.cs" caret="320" scrollPosition="0|0" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:_Layouts/d:CIMB_TimeSheet/f:ApprovalPending_Data.aspx.cs" caret="669" scrollPosition="0|15" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:_Layouts/d:CIMB_TimeSheet/f:ApprovalPending_Data.aspx.cs" caret="2240" scrollPosition="0|30" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:__RESHARPER__DummyWebPages_/f:ApprovalPending.ascx" caret="2206" scrollPosition="0|22" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:__RESHARPER__DummyWebPages_/f:ApprovalPending.ascx" caret="1938" scrollPosition="0|22" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="837" scrollPosition="0|0" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="679" scrollPosition="0|0" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="679" scrollPosition="0|4" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:_Layouts/d:CIMB_TimeSheet/f:ApprovalPending_Data.aspx.cs" caret="2919" scrollPosition="0|45" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:_Layouts/d:CIMB_TimeSheet/f:ApprovalPending_Data.aspx.cs" caret="4186" scrollPosition="0|45" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="1290" scrollPosition="0|1" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="959" scrollPosition="0|19" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="1621" scrollPosition="0|15" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:__RESHARPER__DummyWebPages_/f:ApprovalPending.ascx" caret="3154" scrollPosition="0|53" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="2029" scrollPosition="0|24" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="2988" scrollPosition="0|24" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:__RESHARPER__DummyWebPages_/f:ApprovalPending.ascx" caret="2844" scrollPosition="0|44" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:__RESHARPER__DummyWebPages_/f:ApprovalPending.ascx" caret="3874" scrollPosition="0|77" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="373" scrollPosition="0|0" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/f:ApprovalPending.ascx.cs" caret="837" scrollPosition="0|0" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:_Layouts/d:CIMB_TimeSheet/f:ApprovalPending_Data.aspx.cs" caret="4934" scrollPosition="0|81" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:_Layouts/d:CIMB_TimeSheet/f:ApprovalPending_Data.aspx.cs" caret="6207" scrollPosition="0|81" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:_Layouts/d:CIMB_TimeSheet/f:ApprovalPending_Data.aspx.cs" caret="8263" scrollPosition="0|99" />
+      <File id="EFDD743A-211F-4ADF-99CA-BF9B636BE4ED/d:_Layouts/d:CIMB_TimeSheet/f:ApprovalPending_Data.aspx.cs" caret="10374" scrollPosition="0|132" />
+    </RecentEdits>
+  </RecentFiles>
+  <UnitTestRunner>
+    <CustomStartDirectory>
+    </CustomStartDirectory>
+    <UseShadowCopy>True</UseShadowCopy>
+    <UseCustomFolder>False</UseCustomFolder>
+    <EnableUnitTesting>True</EnableUnitTesting>
+    <Providers />
+  </UnitTestRunner>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="string" priority="4" />
+      <Item value="GetSiteURL" priority="1" />
+      <Item value="return" priority="0" />
+      <Item value="using" priority="1" />
+      <Item value="var" priority="7" />
+      <Item value="new" priority="2" />
+      <Item value="ITXProjectsLibrary" priority="1" />
+      <Item value="WebSvcTimeSheet" priority="1" />
+      <Item value="TimeSheet" priority="1" />
+      <Item value="Timesheet_Svc" priority="7" />
+      <Item value="Site" priority="0" />
+      <Item value="jobUID" priority="0" />
+      <Item value="Microsoft" priority="0" />
+      <Item value="Office.Project.Server" priority="0" />
+      <Item value="Library" priority="0" />
+      <Item value="Guid" priority="3" />
+      <Item value="tsUID" priority="0" />
+      <Item value="PSLibrary" priority="0" />
+      <Item value="TimesheetEnum" priority="0" />
+      <Item value="nextapprover" priority="0" />
+      <Item value="Action" priority="0" />
+      <Item value="LblCurrentResUID" priority="1" />
+      <Item value="if" priority="2" />
+      <Item value="selectedtsuids" priority="2" />
+      <Item value="foreach" priority="0" />
+      <Item value="try" priority="0" />
+      <Item value="MyConfiguration" priority="0" />
+      <Item value="ex" priority="0" />
+      <Item value="tsuid_str" priority="1" />
+      <Item value="true" priority="0" />
+      <Item value="siteurl" priority="0" />
+      <Item value="tsuid" priority="0" />
+      <Item value="LblStatus" priority="0" />
+      <Item value="LblSelectedTsuids" priority="1" />
+      <Item value="from" priority="0" />
+      <Item value="group" priority="0" />
+      <Item value="c" priority="0" />
+      <Item value="by" priority="0" />
+      <Item value="IGrouping" priority="1" />
+      <Item value="Request" priority="0" />
+      <Item value="IsPostBack" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Empty" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ITXProjectsLibrary.WebSvcTimeSheet.TimeSheet">
+      <Item value="UseDefaultCredentials" priority="1" />
+      <Item value="AllowAutoRedirect" priority="1" />
+      <Item value="Url" priority="1" />
+      <Item value="QueueReviewTimesheet" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Microsoft.SharePoint.SPSite">
+      <Item value="Url" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Guid">
+      <Item value="NewGuid" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Microsoft.Office.Project.Server.Library.TimesheetEnum">
+      <Item value="Action" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Microsoft.Office.Project.Server.Library.TimesheetEnum+Action">
+      <Item value="Approve" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@ITXProjectsLibrary.WebSvcTimeSheet.Action">
+      <Item value="Approve" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Guid">
+      <Item value="ToString" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="Split" priority="0" />
+      <Item value="Length" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@CIMB_TimeSheet_RMS.MyConfiguration">
+      <Item value="ErrorLog" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Exception">
+      <Item value="Message" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Diagnostics.EventLogEntryType">
+      <Item value="Error" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.Label">
+      <Item value="Text" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
+      <Item value="ToList" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Linq.IGrouping`2">
+      <Item value="Key" priority="1" />
+      <Item value="First" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.UI.WebControls.HiddenField">
+      <Item value="Value" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.HttpRequest">
+      <Item value="Form" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>
