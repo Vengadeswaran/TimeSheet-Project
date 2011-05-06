@@ -126,6 +126,12 @@ order by #t7.resuid, #t7.t_type
 
 drop table #t7
 ";
+            string rc_code_qry = @"
+                SELECT      MemberFullValue
+                FROM        MSPLT_Project_RC_Code_UserView
+                WHERE       (ParentLookupMemberUID IS NOT NULL)
+                ORDER BY    CAST(MemberFullValue AS varchar(500))
+            ";
 
             #endregion sqlqry
 
@@ -136,9 +142,13 @@ drop table #t7
                 SqlConnection con = new SqlConnection(MyConfiguration.GetDataBaseConnectionString(siteurl));
                 con.Open();
                 DataSet dt = new DataSet();
+                DataSet rc_code_dt = new DataSet();
                 SqlDataAdapter adapter = new SqlDataAdapter(new SqlCommand(gridqry, con));
                 adapter.Fill(dt);
                 DataTable maintbl = dt.Tables[0];
+                adapter = new SqlDataAdapter(new SqlCommand(rc_code_qry, con));
+                adapter.Fill(rc_code_dt);
+                DataTable rc_code_table = rc_code_dt.Tables[0];
                 MyConfiguration.ErrorLog("Main Table Row count = " + dt.Tables[0].Rows.Count, EventLogEntryType.SuccessAudit);
                 maintbl.Columns.Add("HRISID");
                 maintbl.Columns.Add("OLDEMPID");
@@ -310,13 +320,35 @@ drop table #t7
                     resulttbl.Columns.Add("PayRolStDate");
                     resulttbl.Columns.Add("PayRolEntity");
                     resulttbl.Columns.Add("staftype");
-
                     resulttbl.Columns["ResourceName"].SetOrdinal(1);
                     resulttbl.Columns["HRISID"].SetOrdinal(2);
                     resulttbl.Columns["OLDEMPID"].SetOrdinal(3);
                     resulttbl.Columns["PayRolStDate"].SetOrdinal(4);
                     resulttbl.Columns["PayRolEntity"].SetOrdinal(5);
                     resulttbl.Columns["staftype"].SetOrdinal(6);
+                    if (rc_code_table.Rows.Count > 0)
+                    {
+                        int columnindex = 7;
+                        foreach (DataRow ro in rc_code_table.Rows)
+                        {
+                            bool found = false;
+                            foreach (DataColumn resultcolumn in resulttbl.Columns)
+                            {
+                                if (ro[0].ToString() == resultcolumn.ColumnName)
+                                {
+                                    found = true;
+                                    resulttbl.Columns[ro[0].ToString()].SetOrdinal(columnindex);
+                                }
+                            }
+                            if (found == false)
+                            {
+                                resulttbl.Columns.Add(ro[0].ToString());
+                                resulttbl.Columns[ro[0].ToString()].SetOrdinal(columnindex);
+                            }
+                            columnindex++;
+                        }
+                    }
+
                     DataView resdetailview = new DataView(maintbl);
                     DataTable resdetailtable = resdetailview.ToTable(true, "ResUID", "ResourceName", "HRISID", "OLDEMPID", "PayRolStDate", "PayRolEntity", "staftype");
 
@@ -390,7 +422,11 @@ drop table #t7
                         {
                             if (i > 6)
                             {
-                                columnvalue = columnvalue + row[i] + "%,";
+                                if (row[i].ToString() != string.Empty)
+                                {
+                                    columnvalue = columnvalue + row[i] + "%,";
+                                }
+                                else columnvalue = columnvalue + "0%,";
                             }
                             else
                             {
