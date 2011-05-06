@@ -12,7 +12,7 @@ namespace CIMB_TimeSheet_RMS
         {
             if (Context != null)
                 return Utilities.GetDefaultZoneUri(SPContext.Current.Site);
-                return "http://epm2007demo/pwa03";
+            return "http://jump/cimb";
         }
 
         public static string frm_siteurl_GetSiteURL(string siteurl)
@@ -20,15 +20,15 @@ namespace CIMB_TimeSheet_RMS
             int dev = siteurl.IndexOf("http://localhost");
             if (siteurl != string.Empty && dev < 0)
                 return Utilities.GetDefaultZoneUri(new SPSite(siteurl));
-                return GetSiteURL(null);
+            return GetSiteURL(null);
         }
 
         public static string GetDataBaseName(SPContext Context)
         {
             if (Context != null)
                 return Utilities.GetProjectServerSQLDatabaseName(Context.Site.Url, Utilities.DatabaseType.ReportingDatabase);
-                // For Development
-                return "";
+            // For Development
+            return "";
         }
 
         //public static string GetDataBaseConnectionString(SPContext Context)
@@ -88,8 +88,10 @@ namespace CIMB_TimeSheet_RMS
                 Writer.Close();
                 Writer.Dispose();
             }
-            catch (Exception) {
-                return;}
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

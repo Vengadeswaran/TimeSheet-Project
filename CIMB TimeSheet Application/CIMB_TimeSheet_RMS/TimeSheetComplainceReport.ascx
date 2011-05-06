@@ -28,7 +28,7 @@
         });
         $.extend($.jgrid.defaults,
                   { datatype: 'json',
-                   async: true
+                      async: true
                   },
                   { ajaxGridOptions: { contentType: "application/json",
                       success: function (data, textStatus) {
@@ -65,9 +65,9 @@
                                     { name: 'TimeSheetStatus', index: 'TimeSheetStatus', resizable: false, width: '200'}],
                 rowNum: 50,
                 rowList: [50, 100, 200],
-                rowTotal: 500,
+                rowTotal: 2000,
                 height: 'auto',
-                width: '600',
+                width: '601',
                 shrinkToFit: false,
                 mtype: "POST",
                 pager: '#pager',
