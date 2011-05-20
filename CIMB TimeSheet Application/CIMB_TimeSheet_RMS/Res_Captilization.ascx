@@ -3,7 +3,7 @@
 <link href="/_Layouts/CIMB_TimeSheet/css/smoothness/jquery-ui-1.8.9.custom.css" rel="stylesheet"
     type="text/css" />
 <link href="/_Layouts/CIMB_TimeSheet/css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
-<script src="/_Layouts/CIMB_TimeSheet/js/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script src="/_Layouts/CIMB_TimeSheet/js/jquery-1.5.2.min.js" type="text/javascript"></script>
 <script src="_Layouts/CIMB_TimeSheet/js/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script>
 <script src="/_Layouts/CIMB_TimeSheet/js/jquery.json-2.2.min.js" type="text/javascript"></script>
 <script src="/_Layouts/CIMB_TimeSheet/js/grid.locale-en.js" type="text/javascript"></script>
@@ -83,7 +83,7 @@
                 width: '782',
                 shrinkToFit: false,
                 mtype: "POST",
-                pager: '#pager',
+                //pager: '#pager',
                 sortname: 'Project_Name',
                 viewrecords: true,
                 sortorder: "desc",
@@ -105,7 +105,7 @@
                 },
                 gridComplete: function () { $("#Grid1").setGridParam({ datatype: 'local' }); }
             });
-        jQuery("#Grid1").jqGrid('navGrid', '#pager', { add: false, edit: false, del: false }, {}, {}, {}, { autosearch: true });
+        jQuery("#Grid1").jqGrid('searchGrid', { autosearch: true, multiSearch: true });
     }
 
 </script>
@@ -118,13 +118,16 @@
 <div style="padding-left: 10px; padding-top: 10px; padding-top: 10px;">
     <div>
         From Date:
-        <input id="_stdate" type="text" />To Date:
-        <input id="_enddate" type="text" />
+        <input class="ui-widget" id="_stdate" type="text" />To Date:
+        <input class="ui-widget" id="_enddate" type="text" />
         <input id="_hiddenstdate" type="text" style="display: none;" runat="server" />
         <input id="_hiddenenddate" type="text" style="display: none;" runat="server" />
         <input id="_go" type="button" value="Go" />
         <asp:Button ID="exportcsv" runat="server" Text="Export to CSV" UseSubmitBehavior="false"
             OnClick="exportcsv_Click" />
+    </div>
+    <br />
+    <div id="MySearch">
     </div>
     <br />
     <div id="pager" class="scroll" style="text-align: center;">

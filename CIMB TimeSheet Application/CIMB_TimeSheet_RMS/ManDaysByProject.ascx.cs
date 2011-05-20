@@ -51,7 +51,7 @@ SELECT #t1.ResUID, #t1.ProjUID, #t1.ResName, #t1.ProjName, #t1.t_date, #t1.t_wkd
 		ISNULL(dummyt1_nkwking.nonwktotal,0) AS nwktotal, ISNULL(dummyt1.daytotal,0) AS daytotal,
 		CASE WHEN #t1.t_type <> 1 AND ((dummyt1_nkwking.nonwktotal = 4 AND dummyt1.daytotal >4)or (ISNULL(dummyt1_nkwking.nonwktotal,0) =8) or
 					(ISNULL(dummyt1_nkwking.nonwktotal,0) = 0 AND dummyt1.daytotal > 8))
-			THEN (8-ISNULL(dummyt1_nkwking.nonwktotal,0))*#t1.totaltime/ISNULL(dummyt1.daytotal,1)
+			THEN (8-ISNULL(dummyt1_nkwking.nonwktotal,0))*#t1.totaltime/(CASE WHEN dummyt1.daytotal=0 THEN 1 ELSE ISNULL(dummyt1.daytotal,1) END)
 		ELSE #t1.totaltime END AS normalizedtime into #t2
 FROM #t1 LEFT OUTER JOIN(
 SELECT     dummyt1_nwking.ResUID, dummyt1_nwking.t_date, SUM(dummyt1_nwking.totaltime) AS nonwktotal
@@ -128,6 +128,12 @@ order by #t7.resuid, #t7.t_type
 
 drop table #t7
 ";
+            string rc_code_qry = @"
+                SELECT      MemberFullValue
+                FROM        MSPLT_Project_RC_Code_UserView
+                WHERE       (ParentLookupMemberUID IS NOT NULL)
+                ORDER BY    CAST(MemberFullValue AS varchar(500))
+            ";
 
             #endregion sqlqry
 
@@ -138,9 +144,13 @@ drop table #t7
                 SqlConnection con = new SqlConnection(MyConfiguration.GetDataBaseConnectionString(siteurl));
                 con.Open();
                 DataSet dt = new DataSet();
+                DataSet rc_code_dt = new DataSet();
                 SqlDataAdapter adapter = new SqlDataAdapter(new SqlCommand(gridqry, con));
                 adapter.Fill(dt);
                 DataTable maintbl = dt.Tables[0];
+                adapter = new SqlDataAdapter(new SqlCommand(rc_code_qry, con));
+                adapter.Fill(rc_code_dt);
+                DataTable rc_code_table = rc_code_dt.Tables[0];
                 maintbl.Columns.Add("HRISID");
                 maintbl.Columns.Add("OLDEMPID");
                 maintbl.Columns.Add("PayRolStDate");
@@ -316,6 +326,22 @@ drop table #t7
                 resulttbl.Columns["PayRolStDate"].SetOrdinal(4);
                 resulttbl.Columns["PayRolEntity"].SetOrdinal(5);
                 resulttbl.Columns["staftype"].SetOrdinal(6);
+                if (rc_code_table.Rows.Count > 0)
+                {
+                    int columnindex = 7;
+                    foreach (DataRow ro in rc_code_table.Rows)
+                    {
+                        bool found = false;
+                        foreach (DataColumn resultcolumn in resulttbl.Columns)
+                        {
+                            if (ro[0].ToString() == resultcolumn.ColumnName)
+                                found = true;
+                        }
+                        if (found == false)
+                            resulttbl.Columns.Add(ro[0].ToString());
+                        resulttbl.Columns[ro[0].ToString()].SetOrdinal(columnindex++);
+                    }
+                }
 
                 DataView resdetailview = new DataView(maintbl);
                 DataTable resdetailtable = resdetailview.ToTable(true, "ResUID", "ResourceName", "HRISID", "OLDEMPID", "PayRolStDate", "PayRolEntity", "staftype");
@@ -393,7 +419,18 @@ drop table #t7
                         string columnvalue = string.Empty;
                         for (int i = 1; i < resulttbl.Columns.Count; i++)
                         {
-                            columnvalue = columnvalue + row[i] + ",";
+                            if (i > 6)
+                            {
+                                if (row[i].ToString() != string.Empty)
+                                {
+                                    columnvalue = columnvalue + row[i] + ",";
+                                }
+                                else columnvalue = columnvalue + "0,";
+                            }
+                            else
+                            {
+                                columnvalue = columnvalue + row[i] + ",";
+                            }
                         }
                         writer.WriteLine(columnvalue);
                     }

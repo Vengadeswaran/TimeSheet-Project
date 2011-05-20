@@ -49,7 +49,7 @@ SELECT #t1.ResUID, #t1.ProjUID, #t1.ResName, #t1.ProjName, #t1.t_date, #t1.t_wkd
 		ISNULL(dummyt1_nkwking.nonwktotal,0) AS nwktotal, ISNULL(dummyt1.daytotal,0) AS daytotal,
 		CASE WHEN #t1.t_type <> 1 AND ((dummyt1_nkwking.nonwktotal = 4 AND dummyt1.daytotal >4)or (ISNULL(dummyt1_nkwking.nonwktotal,0) =8) or
 					(ISNULL(dummyt1_nkwking.nonwktotal,0) = 0 AND dummyt1.daytotal > 8))
-			THEN (8-ISNULL(dummyt1_nkwking.nonwktotal,0))*#t1.totaltime/ISNULL(dummyt1.daytotal,1)
+			THEN (8-ISNULL(dummyt1_nkwking.nonwktotal,0))*#t1.totaltime/(CASE WHEN dummyt1.daytotal=0 THEN 1.0 ELSE ISNULL(dummyt1.daytotal,1) END)
 		ELSE #t1.totaltime END AS normalizedtime into #t2
 FROM #t1 LEFT OUTER JOIN(
 SELECT     dummyt1_nwking.ResUID, dummyt1_nwking.t_date, SUM(dummyt1_nwking.totaltime) AS nonwktotal
@@ -314,6 +314,10 @@ drop table #t7
                 try
                 {
                     resulttbl = Pivot(pvtable, "ResUID", "costcode", "pct_total_time");
+                }
+                catch (Exception ex) { MyConfiguration.ErrorLog("Error in Pivot data: " + ex.Message, EventLogEntryType.Error); }
+                try
+                {
                     resulttbl.Columns.Add("ResourceName");
                     resulttbl.Columns.Add("HRISID");
                     resulttbl.Columns.Add("OLDEMPID");
@@ -326,6 +330,10 @@ drop table #t7
                     resulttbl.Columns["PayRolStDate"].SetOrdinal(4);
                     resulttbl.Columns["PayRolEntity"].SetOrdinal(5);
                     resulttbl.Columns["staftype"].SetOrdinal(6);
+                }
+                catch (Exception ex) { MyConfiguration.ErrorLog("Error Adding Field: " + ex.Message, EventLogEntryType.Error); }
+                try
+                {
                     if (rc_code_table.Rows.Count > 0)
                     {
                         int columnindex = 7;
@@ -335,23 +343,19 @@ drop table #t7
                             foreach (DataColumn resultcolumn in resulttbl.Columns)
                             {
                                 if (ro[0].ToString() == resultcolumn.ColumnName)
-                                {
                                     found = true;
-                                    resulttbl.Columns[ro[0].ToString()].SetOrdinal(columnindex);
-                                }
                             }
                             if (found == false)
-                            {
                                 resulttbl.Columns.Add(ro[0].ToString());
-                                resulttbl.Columns[ro[0].ToString()].SetOrdinal(columnindex);
-                            }
-                            columnindex++;
+                            resulttbl.Columns[ro[0].ToString()].SetOrdinal(columnindex++);
                         }
                     }
-
-                    DataView resdetailview = new DataView(maintbl);
-                    DataTable resdetailtable = resdetailview.ToTable(true, "ResUID", "ResourceName", "HRISID", "OLDEMPID", "PayRolStDate", "PayRolEntity", "staftype");
-
+                }
+                catch (Exception ex) { MyConfiguration.ErrorLog("Error in adding column:" + ex.Message, EventLogEntryType.Error); }
+                DataView resdetailview = new DataView(maintbl);
+                DataTable resdetailtable = resdetailview.ToTable(true, "ResUID", "ResourceName", "HRISID", "OLDEMPID", "PayRolStDate", "PayRolEntity", "staftype");
+                try
+                {
                     foreach (DataRow ro in resulttbl.Rows)
                     {
                         foreach (DataRow mtlrow in resdetailtable.Select("ResUID = '" + ro["ResUID"] + "'"))
@@ -369,7 +373,7 @@ drop table #t7
                         }
                     }
                 }
-                catch (Exception ex) { MyConfiguration.ErrorLog("Error in Pivot data: " + ex.Message, EventLogEntryType.Error); }
+                catch (Exception ex) { MyConfiguration.ErrorLog("Error in Adding Resource Details:" + ex.Message, EventLogEntryType.Error); }
 
                 #region export function
 

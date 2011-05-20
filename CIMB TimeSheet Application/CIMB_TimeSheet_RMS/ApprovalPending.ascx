@@ -3,37 +3,34 @@
 <link href="/_Layouts/CIMB_TimeSheet/css/smoothness/jquery-ui-1.8.9.custom.css" rel="stylesheet"
     type="text/css" />
 <link href="/_Layouts/CIMB_TimeSheet/css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
-
 <script src="/_Layouts/CIMB_TimeSheet/js/jquery-1.4.4.min.js" type="text/javascript"></script>
-
 <script src="_Layouts/CIMB_TimeSheet/js/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script>
-
 <script src="/_Layouts/CIMB_TimeSheet/js/jquery.json-2.2.min.js" type="text/javascript"></script>
-
 <script src="/_Layouts/CIMB_TimeSheet/js/grid.locale-en.js" type="text/javascript"></script>
-
 <script src="/_Layouts/CIMB_TimeSheet/js/jquery.jqGrid.min.js" type="text/javascript"></script>
-
 <script type="text/javascript">
-    $(function() {
+
+    $(function () {
         $.ajax({
             type: "POST",
-            url: "/_layouts/CIMB_TimeSheet/ApprovalPending_Data.aspx/GetDataTable",
+            url: "/_layouts/CIMB_TimeSheet/ApprovalPending_Data.aspx/GetDataTable?id=" + Math.random(),
             data: "{resuid:'" + $('.CurrentUserID').html() + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function(msg) {
+            success: function (msg) {
                 $("#Grid1").jqGrid({
                     datastr: msg.d,
                     datatype: 'xmlstring',
                     height: 'auto',
-                    rowNum: 50,
+                    rowNum: 'auto',
+                    /*
                     rowList: [10, 20, 30],
+                    */
                     colNames: ['Name', 'Time', 'Approve', 'TSUID'],
                     colModel: [{ name: 'Name', index: 'Name', width: 420 },
-                                { name: 'Time', index: 'Time', width: 80, formatter: 'number' },
-                                { name: 'Approve', index: 'Approve', width: 60, align: 'center', formatter: 'checkbox', editoptions: { value: '1:0' }, formatoptions: { disabled: false} },
-                                { name: 'TSUID', index: 'TSUID', width: 0 },
+                     { name: 'Time', index: 'Time', width: 80, formatter: 'number' },
+                                { name: 'Approve', index: 'Approve', width: 60, align: 'center', formatter: disableCheckbox, editoptions: { value: '1:0' }, formatoptions: { disabled: true} },
+                                { name: 'TSUID', index: 'TSUID', hidden: true },
                               ],
                     pager: "#pager",
                     viewrecords: true,
@@ -43,31 +40,38 @@
                     treeGridModel: 'adjacency',
                     treeGrid: true,
                     ExpandColumn: 'Name',
-                    ExpandColClick: true,
+                    ExpandColClick: false,
                     loadonce: true,
-                    mtype: "POST",
-                    shrinkToFit: false,
+                    //mtype: "POST",
+                    shrinkToFit: true,
                     ignoreCase: true,
                     imgpath: '/_Layouts/CIMB_TimeSheet/css/smoothness/images',
                     caption: "Approval Pending",
-                    serializeGridData: function(data) {
+                    serializeGridData: function (data) {
                     },
-                    gridComplete: function() {
+                    gridComplete: function () {
                         $('.Btnapprovets').show();
                     }
                 });
+            },
+            error: function (e) {
+                alert(e.message);
             }
         });
-        $('.Btnapprovets').click(function() {
+        function disableCheckbox(cellValue, opts, rowObject) {
+            if (rowObject.childNodes[4].nodeTypedValue == 2) {
+                return '<input type="checkbox" checked="checked" />';
+            } return '<input type="checkbox" disabled="disabled" />';
+        }
+        $('.Btnapprovets').click(function () {
             var selectedtsuids = "";
-            $("input:checked").each(function() {
+            $("input:checked").each(function () {
                 selectedtsuids += $(this).parent().next('td').attr('title') + "#";
             });
             $('.LstSelectedtsuids').val(selectedtsuids);
         });
     });
 </script>
-
 <style type="text/css">
     body
     {

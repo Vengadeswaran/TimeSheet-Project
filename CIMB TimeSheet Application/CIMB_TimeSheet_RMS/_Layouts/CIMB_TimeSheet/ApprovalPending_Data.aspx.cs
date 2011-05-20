@@ -19,6 +19,7 @@ namespace CIMB_TimeSheet_RMS._Layouts.CIMB_TimeSheet
         [WebMethod]
         public static string GetDataTable(string resuid)
         {
+            MyConfiguration.ErrorLog(resuid, EventLogEntryType.SuccessAudit);
             string OutputXMLValue = "<?xml version='1.0' encoding='utf-8' ?><rows>";
             try
             {
@@ -65,11 +66,11 @@ FROM         MSP_TimesheetPeriod INNER JOIN
                       MSP_Timesheet.OwnerResourceNameUID = MSP_TimesheetResource.ResourceNameUID AND
                       MSP_Timesheet.TimesheetUID = MSP_TimesheetLine.TimesheetUID INNER JOIN
                       MSP_TimesheetClass ON MSP_TimesheetLine.ClassUID = MSP_TimesheetClass.ClassUID
-                      WHERE     (MSP_Timesheet.TimesheetStatusID = 1)
+                      WHERE     (MSP_Timesheet.TimesheetStatusID = 1) AND (MSP_TimesheetResource.ResourceUID IN " + res_uids + @")
 GROUP BY MSP_TimesheetPeriod.PeriodName, MSP_TimesheetResource.ResourceName, CASE WHEN (MSP_TimesheetProject.ProjectName = 'Administrative')
                       THEN MSP_TimesheetClass.ClassName ELSE MSP_TimesheetProject.ProjectName END, MSP_Timesheet.TimesheetUID
 ";
-                        //AND (MSP_TimesheetResource.ResourceUID IN " + res_uids + @")
+                        //
                         var dt = new DataSet();
                         adapter = new SqlDataAdapter(new SqlCommand(gridqry, con));
                         adapter.Fill(dt);
@@ -132,7 +133,7 @@ GROUP BY MSP_TimesheetPeriod.PeriodName, MSP_TimesheetResource.ResourceName, CAS
                                             periodIndex = RowIndex++;
                                             if (projectnames.Count() > 0)
                                                 OutputXMLValue +=
-                                                    "<cell>false</cell><cell>true</cell></row>";
+                                                    "<cell>false</cell><cell>false</cell></row>";
                                             else
                                                 OutputXMLValue +=
                                                     "<cell>true</cell><cell>true</cell></row>";

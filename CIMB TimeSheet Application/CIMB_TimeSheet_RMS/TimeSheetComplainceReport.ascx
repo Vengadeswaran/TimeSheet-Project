@@ -115,6 +115,7 @@
         --%>
     </div>
     <br />
+    <div id="mySearch" />
     <div id="pager" class="scroll" style="text-align: center;">
     </div>
     <table id="Grid1" class="scroll" align="center" width="100%">

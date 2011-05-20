@@ -66,7 +66,7 @@ SELECT #t1.ResUID, #t1.ProjUID, #t1.ResName, #t1.ProjName, #t1.t_date, #t1.t_wkd
 		ISNULL(dummyt1_nkwking.nonwktotal,0) AS nwktotal, ISNULL(dummyt1.daytotal,0) AS daytotal,
 		CASE WHEN #t1.t_type <> 1 AND ((dummyt1_nkwking.nonwktotal = 4 AND dummyt1.daytotal >4)or (ISNULL(dummyt1_nkwking.nonwktotal,0) =8) or
 					(ISNULL(dummyt1_nkwking.nonwktotal,0) = 0 AND dummyt1.daytotal > 8))
-			THEN (8-ISNULL(dummyt1_nkwking.nonwktotal,0))*#t1.totaltime/ISNULL(dummyt1.daytotal,1)
+			THEN (8-ISNULL(dummyt1_nkwking.nonwktotal,0))*#t1.totaltime/(CASE WHEN dummyt1.daytotal=0 THEN 1 ELSE ISNULL(dummyt1.daytotal,1) END)
 		ELSE #t1.totaltime END AS normalizedtime into #t2
 FROM #t1 LEFT OUTER JOIN(
 SELECT     dummyt1_nwking.ResUID, dummyt1_nwking.t_date, SUM(dummyt1_nwking.totaltime) AS nonwktotal
