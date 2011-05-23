@@ -23,6 +23,7 @@ FROM        MSP_TimesheetStatus AS tstatus INNER JOIN
             MSP_TimesheetResource AS tres ON tsheet.OwnerResourceNameUID = tres.ResourceNameUID RIGHT OUTER JOIN
             [#t1] ON [#t1].ResourceUID = tres.ResourceUID AND [#t1].PeriodUID = tsheet.PeriodUID
 drop table	#t1
+/*
 SELECT		PeriodName, TM_Name, ResourceName, COUNT(CASE WHEN ([TimeSheet Status] = 'In Progress') THEN [TimeSheet Status] END) 
             AS [In Progress], COUNT(CASE WHEN ([TimeSheet Status] = 'Not Created') THEN [TimeSheet Status] END) AS [Not Created], 
             COUNT(CASE WHEN ([TimeSheet Status] = 'Submitted') THEN [TimeSheet Status] END) AS Submitted
@@ -30,7 +31,7 @@ FROM        [#t2]
 WHERE		([TimeSheet Status] <> 'Approved')
 GROUP BY	PeriodName, TM_Name, ResourceName
 ORDER BY	PeriodName, TM_Name, ResourceName
-
+*/
 SELECT		PeriodName, COUNT(CASE WHEN ([TimeSheet Status] = 'In Progress') THEN [TimeSheet Status] END) 
             AS [In Progress], COUNT(CASE WHEN ([TimeSheet Status] = 'Not Created') THEN [TimeSheet Status] END) AS [Not Created], 
             COUNT(CASE WHEN ([TimeSheet Status] = 'Submitted') THEN [TimeSheet Status] END) AS Submitted

@@ -130,6 +130,7 @@
     <Content Include="_Layouts\CIMB_TimeSheet\res_capt_data.aspx" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\jumppcs.css" />
     <Content Include="_Layouts\CIMB_TimeSheet\TimeSheetComplainceData.aspx" />
+    <Content Include="_Layouts\CIMB_TimeSheet\TimeSheetComplainceSubGridData.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ajax_Test.ascx.cs">
@@ -217,6 +218,13 @@
     </Compile>
     <Compile Include="_Layouts\CIMB_TimeSheet\TimeSheetComplainceData.aspx.designer.cs">
       <DependentUpon>TimeSheetComplainceData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\TimeSheetComplainceSubGridData.aspx.cs">
+      <DependentUpon>TimeSheetComplainceSubGridData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Layouts\CIMB_TimeSheet\TimeSheetComplainceSubGridData.aspx.designer.cs">
+      <DependentUpon>TimeSheetComplainceSubGridData.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
