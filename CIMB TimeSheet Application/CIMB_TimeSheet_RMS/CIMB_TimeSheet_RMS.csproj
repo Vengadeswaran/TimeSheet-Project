@@ -87,6 +87,7 @@
     <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\images\ui-icons_f9bd01_256x240.png" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\redmond\jquery-ui-1.8.2.custom.css" />
     <Content Include="_Layouts\CIMB_TimeSheet\css\StdGrid.css" />
+    <Content Include="_Layouts\CIMB_TimeSheet\js\jquery-1.4.2.min.js" />
     <Content Include="_Layouts\CIMB_TimeSheet\js\jquery-1.5.2.min.js" />
     <Content Include="_Layouts\CIMB_TimeSheet\js\jquery-ui-1.8.9.custom.min.js" />
     <Content Include="_Layouts\CIMB_TimeSheet\js\jquery.jqGrid.min.js" />

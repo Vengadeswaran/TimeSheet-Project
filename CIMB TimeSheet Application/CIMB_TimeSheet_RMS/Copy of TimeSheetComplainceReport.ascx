@@ -1,13 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TimeSheetComplainceReport.ascx.cs"
     Inherits="CIMB_TimeSheet_RMS.TimeSheetComplainceReport" %>
 <meta http-equiv="X-UA-Compatible" content="IE=8" />
-<link href="css/smoothness/jquery-ui-1.8.9.custom.css" rel="stylesheet" type="text/css" />
-<link href="css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
-<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script>
-<script src="js/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script>
-<script src="js/jquery.json-2.2.min.js" type="text/javascript"></script>
-<script src="js/grid.locale-en.js" type="text/javascript"></script>
-<script src="js/jquery.jqGrid.min.js" type="text/javascript"></script>
+<link href="/_Layouts/CIMB_TimeSheet/css/smoothness/jquery-ui-1.8.9.custom.css" rel="stylesheet"
+    type="text/css" />
+<link href="/_Layouts/CIMB_TimeSheet/css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+<script src="/_Layouts/CIMB_TimeSheet/js/jquery-1.5.2.min.js" type="text/javascript"></script>
+<script src="_Layouts/CIMB_TimeSheet/js/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script>
+<script src="/_Layouts/CIMB_TimeSheet/js/jquery.json-2.2.min.js" type="text/javascript"></script>
+<script src="/_Layouts/CIMB_TimeSheet/js/grid.locale-en.js" type="text/javascript"></script>
+<script src="/_Layouts/CIMB_TimeSheet/js/jquery.jqGrid.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         /*      $('#_go').button();*/
@@ -54,7 +55,7 @@
                         }
                     }
                 },
-                url: 'TimeSheetComplainceData.aspx/GetDataTable?_stdate=' + $("[id$='_hiddenstdate']")[0].value + '&_enddate=' + $("[id$='_hiddenenddate']")[0].value,
+                url: '/_layouts/CIMB_TimeSheet/TimeSheetComplainceData.aspx/GetDataTable?_stdate=' + $("[id$='_hiddenstdate']")[0].value + '&_enddate=' + $("[id$='_hiddenenddate']")[0].value,
                 datatype: "json",
                 colNames: ['TimeSheet Period', 'In Progress', 'Not Created', 'Submitted'],
                 colModel: [{ name: 'Ts_Period', index: 'Ts_Period', resizable: false, width: '250' },
@@ -74,18 +75,17 @@
                 sortorder: "desc",
                 loadonce: true,
                 caption: "TimeSheet Compliance",
-                imgpath: 'css/smoothness/images',
-                grouping: false,
+                imgpath: '/_Layouts/CIMB_TimeSheet/css/smoothness/images',
+                grouping: true,
                 ignoreCase: true,
-                /*
                 groupingView: {
-                groupField: ['TS_Manager'],
-                groupColumnShow: [false],
-                groupText: ['<b>{0}</b>'],
-                groupSummary: [true],
-                showSummaryOnHide: true,
-                groupCollapse: false
-                },*/
+                    groupField: ['TS_Manager'],
+                    groupColumnShow: [false],
+                    groupText: ['<b>{0}</b>'],
+                    groupSummary: [true],
+                    showSummaryOnHide: true,
+                    groupCollapse: false
+                },
                 subGrid: true,
                 subGridRowExpanded: function (_subGrid, row_id) {
                     var _subGridTableId;
@@ -117,7 +117,7 @@
                             }
                         },
 
-                        url: 'TimeSheetComplainceSubGridData.aspx/GetSubGridData?_stdate=' + $("[id$='_hiddenstdate']")[0].value + '&_enddate=' + $("[id$='_hiddenenddate']")[0].value + '&_periodname=' + _tsperiod.toString(),
+                        url: '/_layouts/CIMB_TimeSheet/TimeSheetComplainceSubGridData.aspx/GetSubGridData?_stdate=' + $("[id$='_hiddenstdate']")[0].value + '&_enddate=' + $("[id$='_hiddenenddate']")[0].value + '&_periodname=' + _tsperiod.toString(),
                         datatype: "json",
                         //Tabel Column List -- TM Name - 0,Resource Name - 1,In Progress - 2,Not Created - 3,Submitted - 4
                         colNames: ['Manager', 'Resource', 'In Progress', 'Not Created', 'Submitted'],
@@ -138,19 +138,19 @@
                         sortorder: "desc",
                         loadonce: true,
                         caption: "TimeSheet Non Compliance",
-                        imgpath: 'css/smoothness/images',
+                        imgpath: '/_Layouts/CIMB_TimeSheet/css/smoothness/images',
                         ignoreCase: true,
                         pager: "#" + _subGridPager,
-                        grouping: true,
-
+                        grouping: false,
+                        /*
                         groupingView: {
-                            groupField: ['TM_Name'],
-                            groupColumnShow: [false],
-                            groupText: ['<b>{0}</b>'],
-                            groupSummary: [true],
-                            showSummaryOnHide: true,
-                            groupCollapse: false
-                        },
+                        groupField: ['TM_Name'],
+                        groupColumnShow: [false],
+                        groupText: ['<b>{0}</b>'],
+                        groupSummary: [true],
+                        showSummaryOnHide: true,
+                        groupCollapse: false
+                        },*/
                         serializeGridData: function (data) {
                             return $.toJSON(data);
                         },
@@ -163,7 +163,7 @@
                 },
                 gridComplete: function () { $("#Grid1").setGridParam({ datatype: 'local' }); }
             });
-        //jQuery("#Grid1").jqGrid('navGrid', '#pager', { add: false, edit: false, del: false }, {}, {}, {}, { autosearch: true });
+        jQuery("#Grid1").jqGrid('navGrid', '#pager', { add: false, edit: false, del: false }, {}, {}, {}, { autosearch: true });
     }
 
 </script>
@@ -181,8 +181,9 @@
         <input id="_hiddenstdate" type="text" style="display: none;" runat="server" />
         <input id="_hiddenenddate" type="text" style="display: none;" runat="server" />
         <input id="_go" type="button" value="Go" />
-        <asp:Button ID="exportcsv" runat="server" Text="Export to CSV" UseSubmitBehavior="false"
+        <%--        <asp:Button ID="exportcsv" runat="server" Text="Export to CSV" UseSubmitBehavior="false"
             OnClick="exportcsv_Click" />
+        --%>
     </div>
     <br />
     <div id="mySearch" />

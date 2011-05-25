@@ -47,8 +47,8 @@ namespace CIMB_TimeSheet_RMS._Layouts.CIMB_TimeSheet
                 int endindex = page;
                 Guid adminguid;
                 adminguid = new Guid("6FF0A657-63BC-4390-8AAF-7EE5CE033088");
-                //var rbs = new ReadRBSValues(System.Net.CredentialCache.DefaultNetworkCredentials, rbsurl);
-                var rbs = new ReadRBSValues(System.Net.CredentialCache.DefaultNetworkCredentials, "http://jump/cimb");
+                var rbs = new ReadRBSValues(System.Net.CredentialCache.DefaultNetworkCredentials, rbsurl);
+                //var rbs = new ReadRBSValues(System.Net.CredentialCache.DefaultNetworkCredentials, "http://jump/cimb");
                 var resuids = rbs.GetBottomLevelResouceUIDs();
                 string filterresource = "(";
                 foreach (var resuid in resuids)

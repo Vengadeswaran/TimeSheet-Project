@@ -29,5 +29,14 @@ namespace CIMB_TimeSheet_RMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText _hiddenenddate;
+        
+        /// <summary>
+        /// exportcsv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button exportcsv;
     }
 }
