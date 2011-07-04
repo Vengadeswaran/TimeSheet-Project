@@ -11,7 +11,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         /*      $('#_go').button();*/
+        $.widget("ui.form", {
+        });
         $('input[type=button]').button();
+        //$('input[type=text]');
         var _hiddenstdate = $("[id$='_hiddenstdate']");
         var _hiddenenddate = $("[id$='_hiddenenddate']");
         $("#_stdate").datepicker({ dateFormat: 'dd-mm-yy', maxDate: '-2d', defaultDate: '-2wk', altField: _hiddenstdate, altFormat: 'dd-M-yy' });
@@ -66,6 +69,7 @@
                 rowTotal: 2000,
                 height: 'auto',
                 width: '595',
+                hidegrid: false,
                 shrinkToFit: false,
                 mtype: "POST",
                 pager: '#pager',
@@ -75,17 +79,7 @@
                 loadonce: true,
                 caption: "TimeSheet Compliance",
                 imgpath: 'css/smoothness/images',
-                grouping: false,
                 ignoreCase: true,
-                /*
-                groupingView: {
-                groupField: ['TS_Manager'],
-                groupColumnShow: [false],
-                groupText: ['<b>{0}</b>'],
-                groupSummary: [true],
-                showSummaryOnHide: true,
-                groupCollapse: false
-                },*/
                 subGrid: true,
                 subGridRowExpanded: function (_subGrid, row_id) {
                     var _subGridTableId;
@@ -137,7 +131,8 @@
                         viewrecords: true,
                         sortorder: "desc",
                         loadonce: true,
-                        caption: "TimeSheet Non Compliance",
+                        titlebar: false,
+                        caption: "",
                         imgpath: 'css/smoothness/images',
                         ignoreCase: true,
                         pager: "#" + _subGridPager,
@@ -161,9 +156,12 @@
                 serializeGridData: function (data) {
                     return $.toJSON(data);
                 },
-                gridComplete: function () { $("#Grid1").setGridParam({ datatype: 'local' }); }
+                gridComplete: function () {
+                    $("#Grid1").setGridParam({ datatype: 'local' });
+                    
+                }
             });
-        //jQuery("#Grid1").jqGrid('navGrid', '#pager', { add: false, edit: false, del: false }, {}, {}, {}, { autosearch: true });
+            //jQuery("#Grid1").jqGrid('navGrid', '#pager', { add: false, edit: false, del: false }, {}, {}, {}, { autosearch: true });
     }
 
 </script>
@@ -172,12 +170,21 @@
     {
         font-size: 75%;
     }
+    label
+    {
+        padding-right: 5px;
+        padding-left: 10px;
+        padding-top: 3px;
+        padding-bottom:6px;
+        font-family:Verdana;
+        font-size:1.25em;
+    }
 </style>
 <div style="padding-left: 10px; padding-top: 10px; padding-top: 10px;">
     <div>
-        From Date:
-        <input id="_stdate" type="text" />To Date:
-        <input id="_enddate" type="text" />
+        <label>From Date:</label> 
+        <input id="_stdate" type="text" class="text ui-widget-content ui-corner-all" /><label>To Date:</label> 
+        <input id="_enddate" type="text" class="text ui-widget-content ui-corner-all" />
         <input id="_hiddenstdate" type="text" style="display: none;" runat="server" />
         <input id="_hiddenenddate" type="text" style="display: none;" runat="server" />
         <input id="_go" type="button" value="Go" />

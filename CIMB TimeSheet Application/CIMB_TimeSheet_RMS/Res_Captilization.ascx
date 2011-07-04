@@ -83,7 +83,7 @@
                 width: '782',
                 shrinkToFit: false,
                 mtype: "POST",
-                //pager: '#pager',
+                pager: '#pager',
                 sortname: 'Project_Name',
                 viewrecords: true,
                 sortorder: "desc",
@@ -105,7 +105,8 @@
                 },
                 gridComplete: function () { $("#Grid1").setGridParam({ datatype: 'local' }); }
             });
-        jQuery("#Grid1").jqGrid('searchGrid', { autosearch: true, multiSearch: true });
+        //jQuery("#Grid1").jqGrid('navGrid', '#pager', { add: false, edit: false, del: false }, {}, {}, {}, { multipleSearch: true });
+        jQuery("#Grid1").jqGrid('searchGrid', '#MySearch', { autosearch: true, multiSearch: true });
     }
 
 </script>

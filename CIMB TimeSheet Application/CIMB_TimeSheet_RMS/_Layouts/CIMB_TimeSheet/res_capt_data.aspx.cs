@@ -131,7 +131,8 @@ ELSE (convert(float,#t6.nor_time) /res_total.res_total_time)*100 END
 AS pct_total_time, #t6.t_type INTO #t7
 from #t6 LEFT OUTER JOIN #t5 on #t6.ResUID = #t5.ResUID and #t6.ProjUID = #t5.ProjUID LEFT OUTER JOIN
 (select #t6.ResUID, SUM (#t6.nor_time) AS res_total_time FROM #t6 GROUP BY #t6.ResUID) AS res_total ON #t6.ResUID = res_total.ResUID
-where #t6.ProjName <> 'Paid Leave-Public Holiday'
+where #t6.ProjName <> 'Paid Leave-Public Holiday' 
+
 order by #t6.ResUID
 drop table #t5
 drop table #t6

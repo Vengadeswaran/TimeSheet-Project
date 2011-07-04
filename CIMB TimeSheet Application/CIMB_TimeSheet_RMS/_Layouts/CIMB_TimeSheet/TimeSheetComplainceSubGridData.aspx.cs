@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Services;
-using ITXProjectsLibrary;
+using ITXProjectsLibrary.WebSvcResource;
 using Microsoft.SharePoint;
 
 namespace CIMB_TimeSheet_RMS._Layouts.CIMB_TimeSheet
@@ -46,16 +46,50 @@ namespace CIMB_TimeSheet_RMS._Layouts.CIMB_TimeSheet
                 int startindex = (page - 1);
                 int endindex = page;
                 Guid adminguid;
+                var resource_svc = new Resource();
                 adminguid = new Guid("6FF0A657-63BC-4390-8AAF-7EE5CE033088");
-                var rbs = new ReadRBSValues(System.Net.CredentialCache.DefaultNetworkCredentials, rbsurl);
-                //var rbs = new ReadRBSValues(System.Net.CredentialCache.DefaultNetworkCredentials, "http://jump/cimb");
-                var resuids = rbs.GetBottomLevelResouceUIDs();
-                string filterresource = "(";
-                foreach (var resuid in resuids)
+                resource_svc.Url = "http://jump/cimb/_vti_bin/psi/resource.asmx";
+
+                if (url.Host.ToString() != "localhost")
                 {
-                    filterresource += "'" + resuid.ToString() + "',";
+                    //var rbs = new ReadRBSValues(System.Net.CredentialCache.DefaultNetworkCredentials, "http://jump/cimb");
+                    resource_svc.Url = rbsurl + "/_vti_bin/psi/resource.asmx";
                 }
+                //var rbs = new ReadRBSValues(System.Net.CredentialCache.DefaultNetworkCredentials, rbsurl);
+                //var resuids = rbs.GetBottomLevelResouceUIDs();
+                resource_svc.UseDefaultCredentials = true;
+                resource_svc.AllowAutoRedirect = true;
+                Guid currentuserid = resource_svc.GetCurrentUserUid();
+                string res_under_curr_user = @"
+                SELECT		ResourceUID
+                FROM		dbo.MSP_EpmResource_UserView
+                WHERE		(RBS Like (	(
+						                SELECT	RBS
+						                FROM	dbo.MSP_EpmResource_UserView
+						                WHERE	ResourceUID = '" + currentuserid.ToString() + @"'
+						                )
+					                +'.%')
+			                ) AND ResourceIsActive = 1
+                ";
+                WindowsImpersonationContext wik = null;
+                wik = WindowsIdentity.Impersonate(IntPtr.Zero);
+                SqlConnection con = new SqlConnection(MyConfiguration.GetDataBaseConnectionString(siteurl));
+                con.Open();
+                DataSet filterresourcelist = new DataSet();
+                SqlDataAdapter filterresourceadapter = new SqlDataAdapter(res_under_curr_user, con);
+                filterresourceadapter.Fill(filterresourcelist);
+                string filterresource = "(";
+                foreach (DataRow row in filterresourcelist.Tables[0].Rows)
+                {
+                    filterresource += "'" + row[0].ToString() + "',";
+                }
+                /*                foreach (var resuid in resuids)
+                                {
+                                    filterresource += "'" + resuid.ToString() + "',";
+                                }
+                */
                 filterresource = filterresource.Substring(0, filterresource.Length - 1) + ")";
+                MyConfiguration.ErrorLog("My Resource UIDs : " + filterresource, EventLogEntryType.Information);
                 string gridqry = @"
 SELECT		res.ResourceUID, res.ResourceName, res.RBS, tperiod.PeriodUID, tperiod.PeriodStatusID, tperiod.StartDate, tperiod.EndDate, tperiod.PeriodName,
             tperiod.LCID, ISNULL(TM_Name.ResourceName, 'Not Assigned') AS TM_Name
@@ -96,15 +130,11 @@ ORDER BY	PeriodName
 */
 drop table	#t2
 ";
-                WindowsImpersonationContext wik = null;
-                wik = WindowsIdentity.Impersonate(IntPtr.Zero);
                 s_GridResult_subgrid result = new s_GridResult_subgrid();
                 try
                 {
                     SPSecurity.RunWithElevatedPrivileges(delegate()
                     {
-                        SqlConnection con = new SqlConnection(MyConfiguration.GetDataBaseConnectionString(siteurl));
-                        con.Open();
                         DataSet dt = new DataSet();
                         SqlDataAdapter adapter = new SqlDataAdapter(new SqlCommand(gridqry, con));
                         adapter.Fill(dt);

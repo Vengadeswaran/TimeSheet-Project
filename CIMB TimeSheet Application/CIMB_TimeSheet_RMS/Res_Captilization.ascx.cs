@@ -119,7 +119,7 @@ order by #t6.ResUID
 drop table #t5
 drop table #t6
 select #t7.ResUID, #t7.ProjUID, #t7.ProjName, #t7.total_time, #t7.pct_total_time,uv_res.ResourceName,
-ISNULL (uv_proj.Project_RC_Code, #t7.ProjName) AS costcode, ISNULL(uv_res.ResourceEmailAddress,'NoEmail') AS res_email
+ISNULL (uv_proj.Project_RC_Code, #t7.ProjName) AS costcode, ISNULL(uv_res.ResourceEmailAddress,'NoEmail') AS res_email, ISNULL(uv_res.RBS, 'NoRBS') AS RBS
 FROM #t7 left outer join dbo.MSP_EpmResource_UserView as uv_res on #t7.ResUID = uv_res.ResourceUID
 left outer join dbo.MSP_EpmProject_UserView as uv_proj on #t7.ProjUID = uv_proj.ProjectUID
 order by #t7.resuid, #t7.t_type
@@ -318,25 +318,27 @@ drop table #t7
                 catch (Exception ex) { MyConfiguration.ErrorLog("Error in Pivot data: " + ex.Message, EventLogEntryType.Error); }
                 try
                 {
+                    resulttbl.Columns.Add("RBS");
                     resulttbl.Columns.Add("ResourceName");
                     resulttbl.Columns.Add("HRISID");
                     resulttbl.Columns.Add("OLDEMPID");
                     resulttbl.Columns.Add("PayRolStDate");
                     resulttbl.Columns.Add("PayRolEntity");
                     resulttbl.Columns.Add("staftype");
-                    resulttbl.Columns["ResourceName"].SetOrdinal(1);
-                    resulttbl.Columns["HRISID"].SetOrdinal(2);
-                    resulttbl.Columns["OLDEMPID"].SetOrdinal(3);
-                    resulttbl.Columns["PayRolStDate"].SetOrdinal(4);
-                    resulttbl.Columns["PayRolEntity"].SetOrdinal(5);
-                    resulttbl.Columns["staftype"].SetOrdinal(6);
+                    resulttbl.Columns["RBS"].SetOrdinal(1);
+                    resulttbl.Columns["ResourceName"].SetOrdinal(2);
+                    resulttbl.Columns["HRISID"].SetOrdinal(3);
+                    resulttbl.Columns["OLDEMPID"].SetOrdinal(4);
+                    resulttbl.Columns["PayRolStDate"].SetOrdinal(5);
+                    resulttbl.Columns["PayRolEntity"].SetOrdinal(6);
+                    resulttbl.Columns["staftype"].SetOrdinal(7);
                 }
                 catch (Exception ex) { MyConfiguration.ErrorLog("Error Adding Field: " + ex.Message, EventLogEntryType.Error); }
                 try
                 {
                     if (rc_code_table.Rows.Count > 0)
                     {
-                        int columnindex = 7;
+                        int columnindex = 8;
                         foreach (DataRow ro in rc_code_table.Rows)
                         {
                             bool found = false;
@@ -353,13 +355,14 @@ drop table #t7
                 }
                 catch (Exception ex) { MyConfiguration.ErrorLog("Error in adding column:" + ex.Message, EventLogEntryType.Error); }
                 DataView resdetailview = new DataView(maintbl);
-                DataTable resdetailtable = resdetailview.ToTable(true, "ResUID", "ResourceName", "HRISID", "OLDEMPID", "PayRolStDate", "PayRolEntity", "staftype");
+                DataTable resdetailtable = resdetailview.ToTable(true, "RBS", "ResUID", "ResourceName", "HRISID", "OLDEMPID", "PayRolStDate", "PayRolEntity", "staftype");
                 try
                 {
                     foreach (DataRow ro in resulttbl.Rows)
                     {
                         foreach (DataRow mtlrow in resdetailtable.Select("ResUID = '" + ro["ResUID"] + "'"))
                         {
+                            ro["RBS"] = mtlrow["RBS"];
                             ro["ResourceName"] = mtlrow["ResourceName"];
                             ro["HRISID"] = mtlrow["HRISID"].ToString();
                             ro["OLDEMPID"] = mtlrow["OLDEMPID"];
@@ -424,7 +427,7 @@ drop table #t7
                         string columnvalue = string.Empty;
                         for (int i = 1; i < resulttbl.Columns.Count; i++)
                         {
-                            if (i > 6)
+                            if (i > 7)
                             {
                                 if (row[i].ToString() != string.Empty)
                                 {
