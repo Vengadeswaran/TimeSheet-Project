@@ -114,9 +114,11 @@ FROM        MSP_TimesheetStatus AS tstatus INNER JOIN
 drop table	#t1
 SELECT		TM_Name, ResourceName, COUNT(CASE WHEN ([TimeSheet Status] = 'In Progress') THEN [TimeSheet Status] END)
             AS [In Progress], COUNT(CASE WHEN ([TimeSheet Status] = 'Not Created') THEN [TimeSheet Status] END) AS [Not Created],
-            COUNT(CASE WHEN ([TimeSheet Status] = 'Submitted') THEN [TimeSheet Status] END) AS Submitted
+            COUNT(CASE WHEN ([TimeSheet Status] = 'Submitted') THEN [TimeSheet Status] END) AS Submitted,
+            COUNT(CASE WHEN ([TimeSheet Status] = 'Approved') THEN [TimeSheet Status] END) AS Approved
 FROM        [#t2]
-WHERE		([TimeSheet Status] <> 'Approved') AND (PeriodName = '" + _periodname + @"')
+--WHERE		([TimeSheet Status] <> 'Approved') AND (PeriodName = '" + _periodname + @"')
+WHERE		(PeriodName = '" + _periodname + @"')
 GROUP BY	PeriodName, TM_Name, ResourceName
 ORDER BY	PeriodName, TM_Name, ResourceName
 /*
@@ -148,12 +150,13 @@ drop table	#t2
                                 s_RowData_subgrid newrow = new s_RowData_subgrid();
                                 newrow.id = idx++;
                                 //Tabel Column List -- TM Name - 0,Resource Name - 1,In Progress - 2,Not Created - 3,Submitted - 4
-                                newrow.cell = new string[5];  //total number of columns
+                                newrow.cell = new string[6];  //total number of columns
                                 newrow.cell[0] = row[0].ToString(); //Timesheet Manager
                                 newrow.cell[1] = row[1].ToString(); //Resource Name
                                 newrow.cell[2] = row[2].ToString(); //In Progress
                                 newrow.cell[3] = row[3].ToString(); //Not Created
                                 newrow.cell[4] = row[4].ToString(); //Submitted
+                                newrow.cell[5] = row[5].ToString(); //Approved
                                 rowsadded.Add(newrow);
                             }
                         }

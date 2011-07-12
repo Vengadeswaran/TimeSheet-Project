@@ -123,9 +123,10 @@ namespace CIMB_TimeSheet_RMS._Layouts.CIMB_TimeSheet
         */
         SELECT		PeriodName, COUNT(CASE WHEN ([TimeSheet Status] = 'In Progress') THEN [TimeSheet Status] END)
                     AS [In Progress], COUNT(CASE WHEN ([TimeSheet Status] = 'Not Created') THEN [TimeSheet Status] END) AS [Not Created],
-                    COUNT(CASE WHEN ([TimeSheet Status] = 'Submitted') THEN [TimeSheet Status] END) AS Submitted
+                    COUNT(CASE WHEN ([TimeSheet Status] = 'Submitted') THEN [TimeSheet Status] END) AS Submitted,
+                    COUNT(CASE WHEN ([TimeSheet Status] = 'Approved') THEN [TimeSheet Status] END) AS Approved
         FROM        [#t2]
-        WHERE		([TimeSheet Status] <> 'Approved')
+        --WHERE		([TimeSheet Status] <> 'Approved')
         GROUP BY	PeriodName
         ORDER BY	PeriodName
         drop table	#t2
@@ -148,11 +149,12 @@ namespace CIMB_TimeSheet_RMS._Layouts.CIMB_TimeSheet
                                 s_RowData newrow = new s_RowData();
                                 newrow.id = idx++;
                                 //Tabel Column List -- ResourceName - 0,TimeSheet Period - 1,TimeSheet Period Status - 2
-                                newrow.cell = new string[4];  //total number of columns
+                                newrow.cell = new string[5];  //total number of columns
                                 newrow.cell[0] = row[0].ToString(); //TimeSheet Period Name
                                 newrow.cell[1] = row[1].ToString(); //In Progress
                                 newrow.cell[2] = row[2].ToString(); //Not Created
                                 newrow.cell[3] = row[3].ToString(); //Submitted
+                                newrow.cell[4] = row[4].ToString(); //Approved
                                 rowsadded.Add(newrow);
                             }
                         }

@@ -12,30 +12,30 @@
     $(document).ready(function () {
         /*      $('#_go').button();*/
         $.widget("ui.form", {
-        });
-        $('input[type=button]').button();
-        //$('input[type=text]');
-        var _hiddenstdate = $("[id$='_hiddenstdate']");
-        var _hiddenenddate = $("[id$='_hiddenenddate']");
-        $("#_stdate").datepicker({ dateFormat: 'dd-mm-yy', maxDate: '-2d', defaultDate: '-2wk', altField: _hiddenstdate, altFormat: 'dd-M-yy' });
-        $("#_enddate").datepicker({ dateFormat: 'dd-mm-yy', maxDate: '-1d', defaultDate: '-1d', altField: _hiddenenddate, altFormat: 'dd-M-yy' });
-        var counter = 1;
-        $('#_go').click(function () {
-            if (counter > 1) {
-                $("#Grid1").jqGrid('GridUnload');
-            }
-            if (_hiddenstdate[0].value != null && _hiddenenddate[0].value != null) {
-                counter++;
-                creategrid();
-            }
-        });
-        $.extend($.jgrid.defaults,
+    });
+    $('input[type=button]').button();
+    //$('input[type=text]');
+    var _hiddenstdate = $("[id$='_hiddenstdate']");
+    var _hiddenenddate = $("[id$='_hiddenenddate']");
+    $("#_stdate").datepicker({ dateFormat: 'dd-mm-yy', maxDate: '-2d', defaultDate: '-2wk', altField: _hiddenstdate, altFormat: 'dd-M-yy' });
+    $("#_enddate").datepicker({ dateFormat: 'dd-mm-yy', maxDate: '-1d', defaultDate: '-1d', altField: _hiddenenddate, altFormat: 'dd-M-yy' });
+    var counter = 1;
+    $('#_go').click(function () {
+        if (counter > 1) {
+            $("#Grid1").jqGrid('GridUnload');
+        }
+        if (_hiddenstdate[0].value != null && _hiddenenddate[0].value != null) {
+            counter++;
+            creategrid();
+        }
+    });
+    $.extend($.jgrid.defaults,
                   { datatype: 'json',
                       async: true
                   });
-    });
-    function creategrid() {
-        $("#Grid1").jqGrid
+});
+function creategrid() {
+    $("#Grid1").jqGrid
             ({
                 ajaxGridOptions: { contentType: "application/json",
                     success: function (data, textStatus) {
@@ -59,16 +59,17 @@
                 },
                 url: 'TimeSheetComplainceData.aspx/GetDataTable?_stdate=' + $("[id$='_hiddenstdate']")[0].value + '&_enddate=' + $("[id$='_hiddenenddate']")[0].value,
                 datatype: "json",
-                colNames: ['TimeSheet Period', 'In Progress', 'Not Created', 'Submitted'],
+                colNames: ['TimeSheet Period', 'In Progress', 'Not Created', 'Submitted', 'Approved'],
                 colModel: [{ name: 'Ts_Period', index: 'Ts_Period', resizable: false, width: '250' },
                                     { name: 'In_Progress', index: 'In_Progress', resizable: false, width: '100' },
                                     { name: 'Not_Created', index: 'Not_Created', resizable: false, width: '100' },
-                                    { name: 'Submitted', index: 'Submitted', resizable: false, width: '100'}],
+                                    { name: 'Submitted', index: 'Submitted', resizable: false, width: '100' },
+                                    { name: 'Approved', index: 'Approved', resizable: false, width: '100'}],
                 rowNum: 50,
                 rowList: [50, 100, 200],
                 rowTotal: 2000,
                 height: 'auto',
-                width: '595',
+                width: '695',
                 hidegrid: false,
                 shrinkToFit: false,
                 mtype: "POST",
@@ -114,17 +115,18 @@
                         url: 'TimeSheetComplainceSubGridData.aspx/GetSubGridData?_stdate=' + $("[id$='_hiddenstdate']")[0].value + '&_enddate=' + $("[id$='_hiddenenddate']")[0].value + '&_periodname=' + _tsperiod.toString(),
                         datatype: "json",
                         //Tabel Column List -- TM Name - 0,Resource Name - 1,In Progress - 2,Not Created - 3,Submitted - 4
-                        colNames: ['Manager', 'Resource', 'In Progress', 'Not Created', 'Submitted'],
+                        colNames: ['Manager', 'Resource', 'In Progress', 'Not Created', 'Submitted', 'Approved'],
                         colModel: [{ name: 'TM_Name', index: 'TM_Name', searchoptions: { searchhidden: true} },
                                    { name: 'Resource', index: 'Resource', resizable: false, width: '200' },
                                    { name: 'In_Progress', index: 'In_Progress', resizable: false, width: '100', align: "right", sorttype: 'number', formatter: 'number', summaryType: 'sum' },
                                    { name: 'Not_Created', index: 'Not_Created', resizable: false, width: '100', align: "right", sorttype: 'number', formatter: 'number', summaryType: 'sum' },
-                                   { name: 'Submitted', index: 'Submitted', resizable: false, width: '100', align: "right", sorttype: 'number', formatter: 'number', summaryType: 'sum'}],
+                                   { name: 'Submitted', index: 'Submitted', resizable: false, width: '100', align: "right", sorttype: 'number', formatter: 'number', summaryType: 'sum' },
+                                   { name: 'Approved', index: 'Approved', resizable: false, width: '100', align: "right", sorttype: 'number', formatter: 'number', summaryType: 'sum'}],
                         rowNum: 20,
                         rowList: [20, 50, 100],
                         rowTotal: 2000,
                         height: 'auto',
-                        width: '500',
+                        width: '600',
                         shrinkToFit: false,
                         mtype: "POST",
                         sortname: 'Resource',
@@ -158,11 +160,11 @@
                 },
                 gridComplete: function () {
                     $("#Grid1").setGridParam({ datatype: 'local' });
-                    
+
                 }
             });
-            //jQuery("#Grid1").jqGrid('navGrid', '#pager', { add: false, edit: false, del: false }, {}, {}, {}, { autosearch: true });
-    }
+    //jQuery("#Grid1").jqGrid('navGrid', '#pager', { add: false, edit: false, del: false }, {}, {}, {}, { autosearch: true });
+}
 
 </script>
 <style type="text/css">
@@ -175,15 +177,17 @@
         padding-right: 5px;
         padding-left: 10px;
         padding-top: 3px;
-        padding-bottom:6px;
-        font-family:Verdana;
-        font-size:1.25em;
+        padding-bottom: 6px;
+        font-family: Verdana;
+        font-size: 1.25em;
     }
 </style>
 <div style="padding-left: 10px; padding-top: 10px; padding-top: 10px;">
     <div>
-        <label>From Date:</label> 
-        <input id="_stdate" type="text" class="text ui-widget-content ui-corner-all" /><label>To Date:</label> 
+        <label>
+            From Date:</label>
+        <input id="_stdate" type="text" class="text ui-widget-content ui-corner-all" /><label>To
+            Date:</label>
         <input id="_enddate" type="text" class="text ui-widget-content ui-corner-all" />
         <input id="_hiddenstdate" type="text" style="display: none;" runat="server" />
         <input id="_hiddenenddate" type="text" style="display: none;" runat="server" />

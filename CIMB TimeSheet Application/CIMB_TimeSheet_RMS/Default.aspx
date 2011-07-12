@@ -17,9 +17,9 @@
     <div>
         <%--<uc1:HR_View ID="HR_View1" runat="server" />--%>
         <%--<uc2:Ajax_Test ID="Ajax_Test1" runat="server" />--%>
-        <%--<uc3:Res_Captilization ID="Res_Captilization1" runat="server" />--%>
+        <uc3:Res_Captilization ID="Res_Captilization1" runat="server" />
         <%--<uc4:ManDaysByProject ID="ManDaysByProject1" runat="server" />--%>
-        <uc5:TimeSheetComplainceReport ID="TimeSheetComplainceReport1" runat="server" />
+        <%--<uc5:TimeSheetComplainceReport ID="TimeSheetComplainceReport1" runat="server" />--%>
         <%--<uc6:ApprovalPending ID="ApprovalPending1" runat="server" />--%>
     </div>
     </form>

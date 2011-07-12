@@ -94,9 +94,10 @@ FROM        MSP_TimesheetStatus AS tstatus INNER JOIN
 drop table	#t1
 SELECT		PeriodName, TM_Name, ResourceName, COUNT(CASE WHEN ([TimeSheet Status] = 'In Progress') THEN [TimeSheet Status] END)
             AS [In Progress], COUNT(CASE WHEN ([TimeSheet Status] = 'Not Created') THEN [TimeSheet Status] END) AS [Not Created],
-            COUNT(CASE WHEN ([TimeSheet Status] = 'Submitted') THEN [TimeSheet Status] END) AS Submitted
+            COUNT(CASE WHEN ([TimeSheet Status] = 'Submitted') THEN [TimeSheet Status] END) AS Submitted,
+            COUNT(CASE WHEN ([TimeSheet Status] = 'Approved') THEN [TimeSheet Status] END) AS Approved
 FROM        [#t2]
-WHERE		([TimeSheet Status] <> 'Approved')
+--WHERE		([TimeSheet Status] <> 'Approved')
 GROUP BY	PeriodName, TM_Name, ResourceName
 ORDER BY	PeriodName, TM_Name, ResourceName
 /*
